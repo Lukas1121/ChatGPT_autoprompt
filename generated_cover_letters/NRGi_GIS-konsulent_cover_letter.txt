@@ -1,0 +1,11 @@
+\lettercontent{Jeg skriver for at udtrykke min interesse i stillingen som GIS-konsulent hos NRGi. Med en baggrund inden for nanoscience specialiseret i bio- og strålefysik, samt erfaring inden for IT-konsulentarbejde og softwareudvikling, er jeg begejstret for muligheden for at blive en del af jeres team og bidrage til drift og udvikling af jeres GIS-applikationer.}
+
+\lettercontent{Som grundlægger og hoved IT-konsulent hos ZeppelinTech Solutions har jeg haft fokus på udvikling af skræddersyede softwareløsninger. Jeg har bl.a. arbejdet med et Python-værktøj til forbedret røntgendataanalyse for ESRF. Dette projekt demonstrerer min evne til hurtigt at lære og integrere nye teknologier, hvilket jeg ser som en værdifuld kompetence i forbindelse med drift og udvikling af GIS-systemer.}
+
+\lettercontent{Under min praktik hos Dansk Teknologisk Institut har jeg ligeledes opnået praktisk erfaring med at udvikle Python-scripts til datakonvertering og -behandling. Disse erfaringer har givet mig solid forståelse for at arbejde med data og systemer, hvilket jeg mener vil være en stor fordel i rollen som GIS-konsulent.}
+
+\lettercontent{Min brede vifte af tekniske og analytiske færdigheder, kombineret med min evne til at tilpasse mig nye teknologier, gør mig i stand til effektivt at understøtte forretningsprocesser og deltage i projekter omkring tilpasning af funktionalitet på eksisterende løsninger eller implementering af løsninger på nye områder. Jeg har også erfaring med konsulentarbejde, hvilket har styrket min evne til at samarbejde og finde løsninger på komplekse problemstillinger.}
+
+\lettercontent{Jeg er motiveret af at levere kvalitetsløsninger og sikre, at tingene bliver løst, og opgaverne kommer i mål. Jeg sætter en ære i at skabe gode og solide løsninger, og jeg trives med en alsidig hverdag med ad hoc-opgaver.}
+
+\lettercontent{Jeg ser frem til muligheden for at bidrage til jeres teams succes og til at diskutere, hvordan mine færdigheder og erfaringer kan matche jeres behov. Tak fordi I overvejer min ansøgning.}
