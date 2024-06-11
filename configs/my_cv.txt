@@ -1,0 +1,101 @@
+\cvsection{Key Qualifications}
+\begin{itemize}
+    \item \textbf{Adaptability and Embracing New Technologies:} Demonstrated ability to quickly learn and integrate new technologies and tools, ensuring up-to-date and effective solutions.
+    \item \textbf{Python Programming Expertise:} Strong proficiency in Python, with practical experience in developing scripts for data analysis, conversion, and treatment, as evidenced by recent consultancy projects.
+    \item \textbf{Versatile Skillset:} Possesses a broad range of technical and analytical skills, allowing for flexibility and versatility in tackling diverse challenges and projects.
+    \item \textbf{Proven Consultancy Track Record:} Successful history of consultancy work, including collaboration with ESRF and development of tailored software solutions for industry-specific needs.
+\end{itemize}
+
+
+        % ----- EXPERIENCE -----
+    \cvsection{Experience}
+    \cvevent{Founder \& Principal IT Consultant}{ZeppelinTech Solutions}{03/2024 -- Present}{Aarhus C, Denmark}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \item Spearheaded the launch of an IT consultancy focusing on software solutions for industry-specific applications.
+            \item Engaged in a collaborative project with ESRF to develop a Python tool for enhanced X-ray data analysis, tailored to meet industrial application standards.
+            \item Emphasized adaptability and customization to meet specific client challenges and requirements.
+        \end{itemize}
+    \end{multicols}
+        
+        \divider
+        
+        \cvevent{Intern - Big Science Department}{Danish Technological Institute}{01/2024-02/2024}{Aarhus C, Denmark}
+        \begin{multicols}{2}
+        \begin{itemize}
+            \item 1-month internship tasks included:
+                \begin{itemize}
+                    \item Developed Python scripts to convert X-ray/neutron diffraction metadata into the NeXus format.
+                    \item Created data treatment scripts for tasks such as multi-peak fitting, background subtraction, and data loading.
+                    \item Established a data processing pipeline to integrate raw measurement data with the EASI-STRESS software, enhancing its effectiveness.
+                \end{itemize}
+        \end{itemize}
+        \end{multicols}
+            
+        \divider
+
+        \cvevent{Handyman}{Flittig \& Flink }{2016 -- 2019}{Copenhagen, Denmark}
+
+        \divider
+
+        \cvevent{Cleaner}{Aarhus Karlshamn}{2014 -- 2016}{Aarhus, Denmark}
+
+         \end{paracol}\newpage
+            
+            \cvevent{Lab Assistant}{Aarhus Karlshamn}{02/2016 -- 05/2016}{Aarhus, Denmark}
+            \begin{multicols}{2}  % This creates a two-column environment
+            \begin{itemize}
+                \item Succesfully recorded NIR spectra of 360 oil samples, data which is now used for AAK's current qualit control system
+                \item Established a dedicated lab corner within the factory for oil measurements
+                \item Data now used for quality control of all factory oil samples.
+            \end{itemize}
+            \end{multicols}
+            \divider
+        
+        % ----- EXPERIENCE -----
+
+        
+
+        % ----- EDUCATION -----
+        \cvsection{Education}
+                    \cvevent{Master in Nanoscience}{University of Copenhagen}{2021 -- 2023}{Copenhagen, Denmark}
+            \begin{multicols}{2}  % This creates a two-column environment
+            \begin{itemize}
+                \item Specialized in bio- and beam-physics
+                \item Python projects:
+                    \begin{itemize}
+                        \item Simulated atrial fibrillation
+                        \item Analyzed Raman microscopy images
+                    \end{itemize}
+                \item Thesis collaboration with ISIS Neutron \& Muon Source
+                    \begin{itemize}
+                        \item Studied neutron moderation using Density Functional Theory
+                    \end{itemize}
+                \item Achieved a top grade of 12 for year-long thesis project
+                \item Article based on thesis currently in progress.
+                % Add more items as needed
+            \end{itemize}
+            \end{multicols}
+            \divider
+        
+            \cvevent{Bachelor in Nanoscience}{University of Copenhagen}{2017 -- 2021}{Copenhagen, Denmark}
+
+        % ----- PROJECTS ----
+        \cvsection{Volunteer Experience}
+            \cvevent{Fairbar}{Bartender}{2024 -- present}{Aarhus C, Denmark}
+
+            \divider
+            
+            \cvevent{Science Buddy/Mentor}{University of Copenhagen}{2019 -- 2022}{Copenhagen, Denmark}
+
+            \divider
+
+              \cvevent{Chairperson of the Event Association}{Frankrigsgade Kollegiet}{2019 -- 2021}{Copenhagen, Denmark}
+
+            \divider
+
+            \cvevent{Resident Council Representative}{Frankrigsgade Kollegiet}{2019 -- 2021}{Copenhagen, Denmark}
+
+            \divider
+        
+            \cvevent{University of Copenhagen}{Open House Science}{02/2020}{Copenhagen, Denmark}
