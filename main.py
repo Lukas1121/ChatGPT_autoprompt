@@ -14,6 +14,7 @@ config_paths = {
     'cv': os.path.join(current_directory, 'configs', 'my_cv.txt'),
     'cover_letter_template': os.path.join(current_directory, 'configs', 'cover_letter.txt'),
     'considerations': os.path.join(current_directory, 'configs', 'considerations.txt'),
+    'email': os.path.join(current_directory, 'configs', 'email.txt'),
     'output_folder': 'generated_cover_letters'
 }
 
@@ -30,13 +31,16 @@ for search in search_data:
     
     print(f"Total job results found: {job_count}")
     for job_link in job_search.job_links:
-        print(job_link)
+        print(job_link) 
+    
     
     job_descriptions = job_search.fetch_job_descriptions()
-    for description in job_descriptions:
-        print(description)
-    
+    print(len(job_descriptions))
     cover_letter_generator = CoverLetterGenerator(api_key, config_paths)
-    cover_letter_generator.process_job_ads(job_descriptions)
+    
+    for description in job_descriptions:
+        # print(description)
+        cover_letter_generator.process_job_ads([description])
+        break
 
     print("\n")

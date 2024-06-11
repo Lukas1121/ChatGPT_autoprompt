@@ -1,0 +1,19 @@
+
+Hello [Recipient's Name],
+
+I am writing to you regarding the IT Consultant position at Netcompany. In IT consulting, quick and innovative solutions are crucial. I believe I would fit well into this role, and you should consider this email as a prime example of my capabilities.
+
+To demonstrate my suitability, I created a custom cover letter and CV using a project I developed. This project involves web scraping job ads, extracting essential information, and generating tailored application materials, all fully automated through Python and ChatGPT AI. This approach not only showcases my technical skills but also my ability to implement efficient and creative solutions.
+
+This email, along with the attached cover letter and CV, was generated through this automated process. While I didn't manually write these documents, I designed the entire system, highlighting my problem-solving abilities and innovative thinking.
+
+For more detailed information about my background and qualifications, please refer to the attached cover letter. I am confident that my unique approach and diverse skill set make me a strong candidate for the IT Consultant position at Netcompany.
+
+Thank you for considering my application. I look forward to the possibility of discussing how my background, skills, and approach can contribute to the success of your team.
+
+Best regards,
+Lukas Zeppelin
+
++45 28 44 42 95
+https://linkedin.com/in/lukas-zeppelin
+https://github.com/Lukas1121/ChatGPT_autoprompt
