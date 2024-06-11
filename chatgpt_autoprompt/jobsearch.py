@@ -10,11 +10,13 @@ from bs4 import BeautifulSoup
 import logging
 import requests
 import time
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-GECKODRIVER_PATH = "geckodriver.exe"
+current_directory = os.path.dirname(os.path.abspath(__file__))
+GECKODRIVER_PATH = os.path.join(current_directory, "geckodriver.exe")
 
 FIREFOX_BINARY_PATH = "C:/Program Files/Mozilla Firefox/firefox.exe"
 
@@ -47,7 +49,7 @@ class JobSearch:
             job_count = 0
         finally:
             driver.quit()
-        
+            
         return job_count
     
     def extract_job_links(self, soup):
@@ -155,8 +157,8 @@ for search in search_data:
         print(job_link)
     
     job_descriptions = job_search.fetch_job_descriptions()
-    for description in job_descriptions:
-        print(description)
+    # for description in job_descriptions:
+    #     print(description)
         # Here you would integrate the code to handle prompting ChatGPT with the job description
         # e.g., chatgpt_prompt_handler(description)
     
