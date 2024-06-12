@@ -1,4 +1,5 @@
 import os
+import json
 import re
 from openai import OpenAI
 import subprocess
@@ -25,6 +26,23 @@ class CoverLetterGenerator:
         
         with open(self.email_template_path, 'r', encoding='utf-8') as file:
             self.email_template = file.read()
+
+    def get_job_info_from_json(self, job_link):
+        processed_links_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'jobs.json')
+
+        if os.path.exists(processed_links_path):
+            with open(processed_links_path, 'r', encoding='utf-8') as file:
+                try:
+                    data = json.load(file)
+                except json.JSONDecodeError:
+                    print("Error reading JSON file.")
+                    return None
+            
+            for entry in data:
+                if entry['job_link'] == job_link:
+                    return entry
+        
+        return None
 
     def extract_company_position_email_and_contact_with_gpt(self, job_add_text):
         prompt = (
@@ -154,24 +172,21 @@ class CoverLetterGenerator:
         generated_email = response.choices[0].message.content.strip()
         return generated_email
 
-    def process_job_ads(self, job_ads):
-        for job_add_text in job_ads:
-            extracted_info = self.extract_company_position_email_and_contact_with_gpt(job_add_text)
-            print(f"Extracted Info: {extracted_info}")  # Debugging line
+    def process_job_ads(self, job_add_text, job_link):
+        job_info = self.get_job_info_from_json(job_link)
+        
+        company_name = job_info['company'].replace(" ", "_")
+        position_title = job_info['job_title'].replace(" ", "_")
+        contact_name = job_info['contact_person']
+        email_address = job_info['email']
 
-            company_name = re.search(r'Company:\s*([^,]+)', extracted_info).group(1).strip().replace(" ", "_")
-            position_title = re.search(r'Position:\s*([^\s,]+)', extracted_info).group(1).strip().replace(" ", "_")
-            contact_name = re.search(r'Contact:\s*([^,]+)', extracted_info).group(1).strip()
-            email_address = re.search(r'Email:\s*([^,]+)', extracted_info).group(1).strip()
-            print(f"Company Name: {company_name}, Position Title: {position_title}, Contact Name: {contact_name}, Email Address: {email_address}")
-
-
-            prompt = self.construct_prompt(job_add_text, self.cv_text, self.cover_letter_template, self.considerations_text)
-            generated_cover_letter = self.generate_cover_letter_with_gpt(prompt)
-
-            self.save_cover_letter(generated_cover_letter, company_name)
-            self.compile_latex_to_pdf(company_name, position_title)
-            generated_email = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address)
-            print(f"Generated Email: {generated_email}")
-
-    
+        
+        print(f"Company Name: {company_name}, Position Title: {position_title}, Contact Name: {contact_name}, Email Address: {email_address}")
+        
+        # prompt = self.construct_prompt(job_add_text, self.cv_text, self.cover_letter_template, self.considerations_text)
+        # generated_cover_letter = self.generate_cover_letter_with_gpt(prompt)
+        
+        # self.save_cover_letter(generated_cover_letter, company_name)
+        # self.compile_latex_to_pdf(company_name, position_title)
+        # generated_email = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address)
+        # print(f"Generated Email: {generated_email}")

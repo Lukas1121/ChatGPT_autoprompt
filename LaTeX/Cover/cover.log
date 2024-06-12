@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.11)  11 JUN 2024 21:27
+This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.11)  12 JUN 2024 17:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -620,6 +620,13 @@ Package fontspec Info:
 age=dflt;"
 
 
+! You can't use `macro parameter character #' in horizontal mode.
+<argument> ...gier som Angular, React, Java og C##
+                                                   anvendes.
+l.48 ... som Angular, React, Java og C# anvendes.}
+                                                  
+? 
+
 
 [1
 
@@ -638,7 +645,7 @@ Here is how much of TeX's memory you used:
  37957 multiletter control sequences out of 15000+600000
  558733 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,5n,139p,649b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,5n,139p,592b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on e:\Python projects\ChatGPT_autoprompt\LaTeX\Cover\cover.pdf (
 1 page).
