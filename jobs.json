@@ -1,0 +1,29 @@
+[
+    {
+        "job_link": "https://smrtr.io/dtpsr",
+        "company": "Netcompany",
+        "job_title": "IT Consultant",
+        "contact_person": "Unknown",
+        "email": "hr.dk@netcompany.com",
+        "date_applied": "2024-06-14",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12548068/it-konsulent",
+        "company": "Aarhus Kommune",
+        "job_title": "IT-konsulent",
+        "contact_person": "Hanne Eline Povlsen",
+        "email": "hahe@aarhus.dk",
+        "date_applied": "2024-06-14",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12548057/understoettende-it-konsulent",
+        "company": "Aarhus Kommune",
+        "job_title": "IT-konsulent",
+        "contact_person": "Hanne Eline Povlsen",
+        "email": "hahe@aarhus.dk",
+        "date_applied": "2024-06-14",
+        "danish": true
+    }
+]

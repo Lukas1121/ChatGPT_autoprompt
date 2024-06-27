@@ -1,0 +1,235 @@
+
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+\newenvironment{sloppypar*}{\sloppy\ignorespaces}{\par}
+
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+
+\usepackage{paracol}
+\usepackage{multicol}
+
+\ifxetexorluatex
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+\ifdarkmode%
+  \definecolor{PrimaryColor}{HTML}{C69749}
+  \definecolor{SecondaryColor}{HTML}{D49B54}
+  \definecolor{ThirdColor}{HTML}{1877E8}
+  \definecolor{BodyColor}{HTML}{ABABAB}
+  \definecolor{EmphasisColor}{HTML}{ABABAB}
+  \definecolor{BackgroundColor}{HTML}{191919}
+\else%
+  \definecolor{PrimaryColor}{HTML}{001F5A}
+  \definecolor{SecondaryColor}{HTML}{0039AC}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{666666}
+  \definecolor{EmphasisColor}{HTML}{2E2E2E}
+  \definecolor{BackgroundColor}{HTML}{E2E2E2}
+\fi%
+
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{SecondaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{EmphasisColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
+
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+
+\begin{document}
+    \name{Lukas Zeppelin}
+    \tagline{IT konsulent}
+    %% You can add multiple photos on the left or right
+    \photoL{4cm}{DSC09681 - Copy.jpg}
+
+    \personalinfo{
+        \email{Lukas.zeppelin.ry@gmail.com}\smallskip
+        \phone{+45 28 44 42 95}
+        \location{Aarhus, Danmark}\\
+        \linkedin{lukas-zeppelin}
+        % \github{Lukas1121}
+        %\homepage{nicolasomar.me}
+        %\medium{nicolasomar}
+        %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
+        % \orcid{0000-0000-0000-0000}
+        %% You can add your own arbtrary detail with
+        %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+        % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+        %% Or you can declare your own field with
+        %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+        % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+        % \gitlab{your_id}
+    }
+    
+    \makecvheader
+    %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+    % \AtBeginEnvironment{itemize}{\small}
+    
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.25}
+
+    % Start a 2-column paracol. Both the left and right columns will automatically
+    % break across pages if things get too long.
+    \begin{paracol}{2}
+        % ----- TECH STACK -----
+\cvsection{Hard Skills}
+    \begin{sloppypar*}
+        \cvtags{Python, Dataanalyse, Biofysik, Spektroskopi, Linux}
+    \end{sloppypar*}
+
+\cvsection{Soft Skills}
+    \begin{sloppypar*}
+        \cvtags{Analytisk, Kommunikation, Teamarbejde, Tilpasningsevne, Problemløsning}
+    \end{sloppypar*}
+                    %
+        % ----- LANGUAGES -----
+        \cvsection{Sprog}
+            \cvlang{Dansk}{Modersmål}\\
+            \divider
+
+            \cvlang{Engelsk}{Modersmål}
+
+        \cvsection{Referencer}
+        
+            \cvref{Nikolaj Zangenberg}{in/nikolaj-zangenberg-7913402/}{nzg@teknologisk.dk}
+            \divider 
+            
+            \cvref{Prof.\ Svemir Rudić}{showcase/isis-neutron-and-muon-source}{svemir.rudic@stfc.ac.uk}
+            \divider
+
+            \cvref{Prof.\ Heloisa N. Bordallo}{in/heloisa-bordallo-92323a50}{bordallo@nbi.ku.dk}
+
+        % ----- REFERENCES -----
+        \switchcolumn
+        
+        % ----- ABOUT ME -----
+% \cvsection{Profil}
+% \begin{quote}
+% Med en kandidat i Nanoscience fra Københavns Universitet har jeg dybdegående erfaring med NIR, IR, Raman og INS spektroskopi, afgørende teknikker i analyse og fortolkning af videnskabelige data. Min rolle hos Teknologisk Institut og det igangværende arbejde for ESRF (European Synchrotron Radiation Facility), hvor jeg udvikler skræddersyede scripts til konvertering af rådata, har styrket min ekspertise i datahåndtering og avanceret dataanalyse. Som en erfaren Manjaro Linux-bruger er jeg velbevandret i Linux, hvilket er vigtigt for at understøtte IT-infrastrukturen. Min baggrund indbefatter en stærk kompetence i Python-programmering, essentiel for at udvikle og optimere systemer til behandling af astrofysiske forskningsdata. Jeg er drevet af en passion for at støtte banebrydende forskningsprojekter og ser frem til at bidrage med min tekniske indsigt og problemløsningsevner.
+% \end{quote}
+
+
+\cvsection{Nøglekvalifikationer}
+\begin{itemize}
+    \item \textbf{Tilpasningsevne og Omfavnelse af Nye Teknologier:} Vist evne til hurtigt at lære og integrere nye teknologier og værktøjer, hvilket sikrer opdaterede og effektive løsninger.
+    \item \textbf{Python Programmeringsekspertise:} Stærk evner i Python, med praktisk erfaring i udvikling af scripts til dataanalyse, konvertering og behandling, som påvist ved nylige konsulentprojekt.
+    \item \textbf{Alsidig Kompetencesæt:} Besidder en bred vifte af tekniske og analytiske færdigheder, der tillader fleksibilitet og alsidighed i at tackle forskellige udfordringer og projekter.
+    \item \textbf{Bevist Konsulenthistorik:} Succesfuld historie med konsulentarbejde, herunder samarbejde med ESRF og udvikling af skræddersyede softwareløsninger til branchespecifikke behov.
+\end{itemize}
+
+% ----- ERFARING -----
+\cvsection{Erfaring}
+\cvevent{Grundlægger \& Hoved IT Konsulent}{ZeppelinTech Solutions}{03/2024 -- Nuværende}{Aarhus C, Danmark}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item Ledte lanceringen af et IT-konsulentfirma med fokus på softwareløsninger til branchespecifikke applikationer.
+        \item Deltog i et samarbejdsprojekt med ESRF om udvikling af et Python-værktøj til forbedret røntgendataanalyse, skræddersyet til at opfylde industrielle anvendelsesstandarder.
+        \item Lagde vægt på tilpasningsevne og tilpasning for at imødekomme specifikke kunders udfordringer og krav.
+    \end{itemize}
+\end{multicols}
+
+\divider
+
+\cvevent{Praktikant - Big Science Department}{Dansk Teknologisk Institut}{01/2024-02/2024}{Aarhus C, Danmark}
+\begin{multicols}{2}
+\begin{itemize}
+    \item 1-måneds praktikopgaver inkluderede:
+        \begin{itemize}
+            \item Udviklede Python scripts til konvertering af røntgen/neutron diffraktionsmetadata til NeXus-format.
+            \item Skabte databehandlingsscripts til opgaver såsom multi-peak fitting, background subtraction og dataloading.
+            \item Etablerede en databehandlingspipeline til at integrere ubehandlet data med EASI-STRESS software, hvilket forbedrede dens effektivitet.
+        \end{itemize}
+\end{itemize}
+\end{multicols}
+
+\divider
+
+\cvevent{Handyman}{Flittig \& Flink}{2016 -- 2019}{København, Danmark}
+
+\divider
+
+\cvevent{Rengøringsassistent}{Aarhus Karlshamn}{2014 -- 2016}{Aarhus, Danmark}
+
+\divider\end{paracol}
+
+\cvevent{Laboratorieassistent}{Aarhus Karlshamn}{02/2016 -- 05/2016}{Aarhus, Danmark}
+\begin{multicols}{2}  % This creates a two-column environment
+\begin{itemize}
+    \item Succesfuldt optaget NIR spektre af 360 olieprøver, data som nu bruges til AAK's nuværende kvalitetskontrolsystem
+    \item Etablerede et dedikeret laboratoriehjørne inden for fabrikken til oliemålinger
+    \item Data nu brugt til kvalitetskontrol af alle fabriksolieprøver.
+\end{itemize}
+\end{multicols}
+\divider
+
+% ----- UDDANNELSE -----
+\cvsection{Uddannelse}
+    \cvevent{Master i Nanoscience}{Københavns Universitet}{2021 -- 2023}{København, Danmark}
+\begin{multicols}{2}  % This creates a two-column environment
+\begin{itemize}
+    \item Specialiseret i bio- og strålefysik
+    \item Python projekter:
+        \begin{itemize}
+            \item Simulerede atrieflimren
+            \item Analyserede Raman mikroskopi billeder
+        \end{itemize}
+    \item Specialesamarbejde med ISIS Neutron \& Muon Source
+        \begin{itemize}
+            \item Undersøgte neutronmoderation ved brug af Density Functional Theory
+        \end{itemize}
+    \item Opnåede topkarakter på 12 for et år langt specialeprojekt
+    \item Artikel baseret på specialet er i øjeblikket under udarbejdelse.
+\end{itemize}
+\end{multicols}
+\divider
+
+\cvevent{Bachelor i Nanoscience}{Københavns Universitet}{2017 -- 2021}{København, Danmark}
+
+% ----- PROJEKTER ----
+\cvsection{Frivilligt Arbejde}
+\cvevent{Fairbar}{Bartender}{2024 -- nuværende}{Aarhus C, Danmark}
+
+\divider
+
+\cvevent{Science Buddy/Mentor}{Københavns Universitet}{2019 -- 2022}{København, Danmark}
+
+\divider
+
+\cvevent{Formand for Eventforeningen}{Frankrigsgade Kollegiet}{2019 -- 2021}{København, Danmark}
+
+\divider
+
+\cvevent{Beboerrådsrepræsentant}{Frankrigsgade Kollegiet}{2019 -- 2021}{København, Danmark}
+
+\divider
+
+\cvevent{Københavns Universitet}{Åbent Hus Science}{02/2020}{København, Danmark}
+
+\divider
+
+\cvsection{Om Mig}
+    \begin{quote}
+        I min fritid er jeg en ivrig boulderer, jeg elsker at løse det puslespil, hver ny rute bringer. Jeg elsker også at spille musik, uanset om jeg synger, spiller bas eller dykker ned i nuancerne af et nyt instrument. Motion holder mig afbalanceret, mens jeg også nyder at bruge noget af min fritid på frivilligt arbejde. Jeg nyder en god blanding af at udfordre mine grænser og at forbinde mig med andre. Så, uanset om vi taler klatreruter eller rock 'n' roll, så er jeg din mand!
+    \end{quote}
+    
+\end{document}
