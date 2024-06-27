@@ -64,12 +64,12 @@ def read_existing_job_links(file_path):
                 pass
     return existing_links
 
-def process_job(search, existing_job_links, cover_letter_generator, processed_links_path):
+def process_job(search, existing_job_links, cover_letter_generator, processed_links_path, client):
     keyword = search['keyword']
     location = search['location']
     print(f"Searching for keyword: {keyword} in location: {location}")
     
-    job_search = JobSearch(keyword, location, cover_letter_generator.client)
+    job_search = JobSearch(keyword, location, client)
     job_count = job_search.search_jobindex()
     
     print(f"Total job results found: {job_count}")
@@ -85,6 +85,7 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
             continue  # Skip to the next job link
 
         job_description = job_search.generate_job_description_with_gpt(html_content)
+
         extracted_info = cover_letter_generator.extract_company_position_email_and_contact_with_gpt(job_description)
         print(extracted_info)
 
@@ -98,7 +99,12 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
 
         existing_job_links.add(job_link)
 
+        # If no valid email found, set your own email
+        if not email or email.lower() == 'unknown':
+            email = 'Lukieminator@gmail.com'
+
         cover_letter_generator.process_job_ads(job_description, job_link)
+
 
 def main():
     search_data = read_search_data(keywords_path)
@@ -106,7 +112,7 @@ def main():
     existing_job_links = read_existing_job_links(processed_links_path)
 
     for search in search_data:
-        process_job(search, existing_job_links, cover_letter_generator, processed_links_path)
+        process_job(search, existing_job_links, cover_letter_generator, processed_links_path, client)
 
 if __name__ == "__main__":
     main()

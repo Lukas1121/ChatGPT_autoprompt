@@ -86,32 +86,38 @@ class JobSearch:
         return job_html_pages
     
     def construct_extraction_prompt(self, html_content):
+        # Truncate the HTML content to a maximum length of 5000 characters
+        max_length = 50000
+        truncated_html = html_content[:max_length]
+        
         prompt = (
             "You are an assistant who extracts job descriptions from HTML content. "
-            "I will provide you with the HTML content of a job ad page, and you need to extract the job description from it. "
+            "I will provide you with the truncated HTML content of a job ad page, and you need to extract the job description from it. "
             "The job description is usually within meta tags, div tags, or main content sections. "
             "If you find the job description within multiple possible sections, concatenate them appropriately. "
             "If any additional information that clearly belongs to the job description is found, include it as well. "
             "Here is the HTML content:\n\n"
-            f"{html_content}\n\n"
+            f"{truncated_html}\n\n"
             "Extracted Job Description:"
         )
         return prompt
 
     def generate_job_description_with_gpt(self, html_content):
-        openai.api_key = self.openai_api_key
         prompt = self.construct_extraction_prompt(html_content)
 
         response = self.client.chat.completions.create(
-            engine="gpt-3.5-turbo",
-            prompt=prompt,
-            max_tokens=2500,
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an assistant who helps with text extraction."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=1024,
             n=1,
             stop=None,
             temperature=0.5
         )
 
-        job_description = response.choices[0].text.strip()
+        job_description = response.choices[0].message.content.strip()
         return job_description
 
 def read_search_data(file_path):

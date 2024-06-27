@@ -25,5 +25,68 @@
         "email": "hahe@aarhus.dk",
         "date_applied": "2024-06-14",
         "danish": true
+    },
+    {
+        "job_link": "https://secure.webtemp.no/webtempcvportal/stillingsingle.aspx?k=265&id_utleie=3000035",
+        "company": "Unknown",
+        "job_title": "Unknown",
+        "contact_person": "Unknown",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1469268/studentermedhjaelper-it-service-delivery",
+        "company": "Unknown",
+        "job_title": "Unknown",
+        "contact_person": "Unknown",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1468675/kom-med-ombord-hos-firstline-it-hvor-it-og-mennesker-moedes",
+        "company": "Unknown",
+        "job_title": "IT-konsulent",
+        "contact_person": "Unknown",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": true
+    },
+    {
+        "job_link": "https://kongruensaps.hr-on.com/show-job/203300?linkref=207567&locale=da_dk",
+        "company": "Secher",
+        "job_title": "Security Consultant",
+        "contact_person": "Kristian Secher",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12584235/handicaphjaelper-til-hornslet-hurtigst-muligt-fast-nattevagt",
+        "company": "DUOS A/S",
+        "job_title": "Handicaphj\u00e6lper til Hornslet hurtigst muligt: Fast nattevagt",
+        "contact_person": "Unknown",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12577992/handicaphjaelper-til-fast-dag-og-fast-nat-samt-vikar-soeges-i-hornslet-hurtigst-muligt",
+        "company": "DUOS A/S",
+        "job_title": "Handicaphj\u00e6lper",
+        "contact_person": "Unknown",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.it-jobbank.dk/c?t=h1479484&ctx=j&utm_source=partner&utm_medium=jobindex&utm_campaign=jobannonce",
+        "company": "Lars Larsen Group",
+        "job_title": "Project Manager",
+        "contact_person": "Unknown",
+        "email": "Unknown",
+        "date_applied": "2024-06-27",
+        "danish": true
     }
 ]

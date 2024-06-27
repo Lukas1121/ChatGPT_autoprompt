@@ -68,10 +68,15 @@ class CoverLetterGenerator:
         )
         extracted_text = response.choices[0].message.content.strip()
 
+        print("Extracted Text:", extracted_text)  # Print the extracted text to debug
+
         result = {}
         for line in extracted_text.split(', '):
-            key, value = line.split(': ', 1)
-            result[key.lower()] = value
+            if ': ' in line:
+                key, value = line.split(': ', 1)
+                result[key.lower()] = value
+            else:
+                print(f"Skipping line: {line} (unexpected format)")  # Log unexpected lines
 
         return result
 
@@ -202,18 +207,24 @@ class CoverLetterGenerator:
     def process_job_ads(self, job_add_text, job_link):
         job_info = self.get_job_info_from_json(job_link)
         
-        company_name = job_info['company'].replace(" ", "_")
-        position_title = job_info['job_title'].replace(" ", "_")
+        company_name = job_info['company']
+        position_title = job_info['job_title']
         contact_name = job_info['contact_person']
         email_address = job_info['email']
         danish = job_info['danish'] 
+        job_link = job_info['job_link']
 
         prompt = self.construct_prompt(job_add_text, self.cv_text, self.cover_letter_template, self.considerations_text)
         generated_cover_letter = self.generate_cover_letter_with_gpt(prompt)
         
         self.save_cover_letter(generated_cover_letter, company_name)
         self.compile_latex_to_pdf(company_name, position_title)
-        subject, body = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address,danish=danish)
+
+        if email_address.lower() == 'lukieminator@gmail.com':
+            subject = f"Manual Application Required for {position_title} at {company_name}"
+            body = f"This job needs to be applied to manually. Please find attached the generated cover letter and CV.\n\nJob Link: {job_link}"
+        else:
+            subject, body = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address, danish=danish)
 
         email_sender = EmailSender()
         cover_letter_path = os.path.join(self.output_folder, f"{company_name}_{position_title}_cover_letter.pdf")
@@ -221,4 +232,4 @@ class CoverLetterGenerator:
         
         files = [cover_letter_path, cv_path]
 
-        email_sender.send_message('Lukas.zeppelin.ry@gmail.com.com', email_address, subject, body, files)
+        email_sender.send_message('Lukas.zeppelin.ry@gmail.com', email_address, subject, body, files)
