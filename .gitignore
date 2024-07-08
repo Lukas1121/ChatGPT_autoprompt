@@ -2,5 +2,7 @@ output/CV_Dansk_Lukas_Zeppelin.pdf
 output/CV_English_Lukas_Zeppelin.pdf
 token.json
 configs/credentials.json
+configs/email_v2.txt
 tokenEST.py
 jobs.json
+output/

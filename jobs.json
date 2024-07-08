@@ -27,37 +27,10 @@
         "danish": true
     },
     {
-        "job_link": "https://secure.webtemp.no/webtempcvportal/stillingsingle.aspx?k=265&id_utleie=3000035",
-        "company": "Unknown",
-        "job_title": "Unknown",
-        "contact_person": "Unknown",
-        "email": "Unknown",
-        "date_applied": "2024-06-27",
-        "danish": false
-    },
-    {
         "job_link": "https://www.jobindex.dk/jobannonce/h1469268/studentermedhjaelper-it-service-delivery",
         "company": "Unknown",
         "job_title": "Unknown",
         "contact_person": "Unknown",
-        "email": "Unknown",
-        "date_applied": "2024-06-27",
-        "danish": true
-    },
-    {
-        "job_link": "https://www.jobindex.dk/jobannonce/h1468675/kom-med-ombord-hos-firstline-it-hvor-it-og-mennesker-moedes",
-        "company": "Unknown",
-        "job_title": "IT-konsulent",
-        "contact_person": "Unknown",
-        "email": "Unknown",
-        "date_applied": "2024-06-27",
-        "danish": true
-    },
-    {
-        "job_link": "https://kongruensaps.hr-on.com/show-job/203300?linkref=207567&locale=da_dk",
-        "company": "Secher",
-        "job_title": "Security Consultant",
-        "contact_person": "Kristian Secher",
         "email": "Unknown",
         "date_applied": "2024-06-27",
         "danish": true
@@ -81,12 +54,57 @@
         "danish": true
     },
     {
-        "job_link": "https://www.it-jobbank.dk/c?t=h1479484&ctx=j&utm_source=partner&utm_medium=jobindex&utm_campaign=jobannonce",
-        "company": "Lars Larsen Group",
-        "job_title": "Project Manager",
+        "job_link": "https://secure.webtemp.no/webtempcvportal/stillingsingle.aspx?k=265&id_utleie=3000035",
+        "company": "Unknown",
+        "job_title": "Unknown",
         "contact_person": "Unknown",
         "email": "Unknown",
         "date_applied": "2024-06-27",
+        "danish": false
+    },
+    {
+        "job_link": "https://kongruensaps.hr-on.com/show-job/203300?linkref=207567&locale=da_dk",
+        "company": "Secher Security",
+        "job_title": "Security Consultant",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-06-27",
         "danish": true
+    },
+    {
+        "job_link": "https://www.it-jobbank.dk/c?t=h1479484&ctx=j&utm_source=partner&utm_medium=jobindex&utm_campaign=jobannonce",
+        "company": "Lars Larsen Group",
+        "job_title": "Unknown",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-06-27",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1468675/kom-med-ombord-hos-firstline-it-hvor-it-og-mennesker-moedes",
+        "company": "Firstline IT",
+        "job_title": "IT consultant",
+        "contact_person": "Lars Dige",
+        "email": "ld@firstlineit.dk",
+        "date_applied": "2024-06-27",
+        "danish": false
+    },
+    {
+        "job_link": "https://midtjob.dk/ad/konsulent-med-brugerfokus-til-region-midtjyllands-indkobs-og-logistiksystem/rwm3d9",
+        "company": "Region Midtjylland",
+        "job_title": "Unknown",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1482016/selvstaendig-og-ambitioes-finance-manager-regnskabschef",
+        "company": "Elogic A/S",
+        "job_title": "Finance Manager/Regnskabschef",
+        "contact_person": "Bo Ankerfelt",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
     }
 ]

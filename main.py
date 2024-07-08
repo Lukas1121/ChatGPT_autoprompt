@@ -95,13 +95,12 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
         email = extracted_info.get('email', 'Unknown').strip()
         danish = extracted_info.get('danish', 'false').strip().lower() == 'true'
 
+        if not email or email.lower() == 'unknown':
+            email = 'Lukieminator@gmail.com'
+
         append_job_link_json(processed_links_path, job_link, company, job_title, contact_person, email, danish)
 
         existing_job_links.add(job_link)
-
-        # If no valid email found, set your own email
-        if not email or email.lower() == 'unknown':
-            email = 'Lukieminator@gmail.com'
 
         cover_letter_generator.process_job_ads(job_description, job_link)
 

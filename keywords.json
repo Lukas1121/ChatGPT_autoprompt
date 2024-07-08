@@ -3,6 +3,22 @@
         {
             "keyword": "IT-konsulent",
             "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data-engineer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data engineer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data-science",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data science",
+            "location": "region-midtjylland"
         }
     ]
 }

@@ -86,10 +86,23 @@ class JobSearch:
         return job_html_pages
     
     def construct_extraction_prompt(self, html_content):
-        # Truncate the HTML content to a maximum length of 5000 characters
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        for tag in soup(['script', 'style', 'footer', 'nav', 'header', 'aside']):
+            tag.decompose()
+
+        relevant_sections = soup.find_all(['div', 'section', 'article'], class_=lambda x: x and 'job' in x.lower())
+
+        if not relevant_sections:
+            relevant_sections = soup.find_all(['div', 'section', 'article'])
+
+        extracted_content = ' '.join(section.get_text(separator=' ', strip=True) for section in relevant_sections)
+
         max_length = 50000
-        truncated_html = html_content[:max_length]
-        
+        truncated_content = extracted_content[:max_length]
+
+        print(truncated_content)
+
         prompt = (
             "You are an assistant who extracts job descriptions from HTML content. "
             "I will provide you with the truncated HTML content of a job ad page, and you need to extract the job description from it. "
@@ -97,10 +110,12 @@ class JobSearch:
             "If you find the job description within multiple possible sections, concatenate them appropriately. "
             "If any additional information that clearly belongs to the job description is found, include it as well. "
             "Here is the HTML content:\n\n"
-            f"{truncated_html}\n\n"
+            f"{truncated_content}\n\n"
             "Extracted Job Description:"
         )
         return prompt
+
+
 
     def generate_job_description_with_gpt(self, html_content):
         prompt = self.construct_extraction_prompt(html_content)
@@ -111,7 +126,7 @@ class JobSearch:
                 {"role": "system", "content": "You are an assistant who helps with text extraction."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=1024,
+            max_tokens=2024,
             n=1,
             stop=None,
             temperature=0.5

@@ -1,15 +1,14 @@
+Dear [Recipient's Name],
 
-Hello [Recipient's Name],
+I hope this email finds you well.
 
-I am writing to you regarding the IT Consultant position at Netcompany. In IT consulting, quick and innovative solutions are crucial. I believe I would fit well into this role, and you should consider this email as a prime example of my capabilities.
+I am writing to express my interest in the [Position] position at [Company Name]. If you are looking for creative and innovative solutions, I believe I would be a great fit for this role.
 
-To demonstrate my suitability, I created a custom cover letter and CV using a project I developed. This project involves web scraping job ads, extracting essential information, and generating tailored application materials, all fully automated through Python and ChatGPT AI. This approach not only showcases my technical skills but also my ability to implement efficient and creative solutions.
+To demonstrate my ability to think outside the box, I developed a fully automated Python script. This script scrapes job sites for listings that match my preferences, extracts relevant information, and uses the ChatGPT API to generate custom cover letters and emails. The email you are reading now, along with the attached cover letter and CV, were all created and sent automatically by this script.
 
-This email, along with the attached cover letter and CV, was generated through this automated process. While I didn't manually write these documents, I designed the entire system, highlighting my problem-solving abilities and innovative thinking.
+If you find this project interesting, you can view the script on GitHub, linked below. I think this project shows my ability to create efficient and creative solutions, which I can bring to [Company Name].
 
-For more detailed information about my background and qualifications, please refer to the attached cover letter. I am confident that my unique approach and diverse skill set make me a strong candidate for the IT Consultant position at Netcompany.
-
-Thank you for considering my application. I look forward to the possibility of discussing how my background, skills, and approach can contribute to the success of your team.
+Thank you for considering my application. I look forward to the possibility of discussing how my skills can benefit your team.
 
 Best regards,
 Lukas Zeppelin

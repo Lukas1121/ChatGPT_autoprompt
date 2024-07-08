@@ -48,7 +48,7 @@ class CoverLetterGenerator:
 
     def extract_company_position_email_and_contact_with_gpt(self, job_add_text):
         prompt = (
-            "Extract the company name, the position title, the contact person's name, and the email address from the following job advertisement text. "
+            "Extract the company name, the position title, the contact person's name (if there are multiple, add them like so: John Doe and Michael Scott), and the email address of the primary contact, from the following job advertisement text. "
             "If any of the information is not clearly specified, return 'Unknown'. "
             "Also, determine if the job advertisement is in Danish. "
             "Format the output as 'Company: [company name], Position: [position title], Contact: [contact name], Email: [email address], Danish: [true/false]'.\n\n"
@@ -61,14 +61,12 @@ class CoverLetterGenerator:
                 {"role": "system", "content": "You are an assistant who helps with text extraction."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=150,
+            max_tokens=300,  # Increase the token limit
             n=1,
             stop=None,
             temperature=0.7
         )
         extracted_text = response.choices[0].message.content.strip()
-
-        print("Extracted Text:", extracted_text)  # Print the extracted text to debug
 
         result = {}
         for line in extracted_text.split(', '):
@@ -229,7 +227,10 @@ class CoverLetterGenerator:
         email_sender = EmailSender()
         cover_letter_path = os.path.join(self.output_folder, f"{company_name}_{position_title}_cover_letter.pdf")
         cv_path = os.path.join(self.output_folder, 'CV_Dansk_Lukas_Zeppelin.pdf') if danish else os.path.join(self.output_folder, 'CV_English_Lukas_Zeppelin.pdf')
-        
-        files = [cover_letter_path, cv_path]
+        nir_recommendation_path = os.path.join(self.output_folder, 'NIR_Anbefaling.pdf')
+        ti_recommendation_path = os.path.join(self.output_folder, 'TI_Anbefaling_LukasZeppelin.pdf')
+
+        files = [cover_letter_path, cv_path, nir_recommendation_path, ti_recommendation_path]
+
 
         email_sender.send_message('Lukas.zeppelin.ry@gmail.com', email_address, subject, body, files)
