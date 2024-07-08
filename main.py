@@ -84,7 +84,7 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
             print(f"Job link {job_link} already processed. Skipping.")
             continue  # Skip to the next job link
 
-        job_description = job_search.generate_job_description_with_gpt(html_content)
+        job_description = job_search.generate_job_description_with_gpt(html_content, job_link)
 
         extracted_info = cover_letter_generator.extract_company_position_email_and_contact_with_gpt(job_description)
         print(extracted_info)

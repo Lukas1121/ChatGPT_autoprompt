@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.13)  8 JUL 2024 11:11
+This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.13)  8 JUL 2024 12:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -634,11 +634,11 @@ Package rerunfilecheck Info: File `cover.out' has not changed.
 Here is how much of TeX's memory you used:
  15473 strings out of 409067
  287896 string characters out of 5757611
- 1935545 words of memory out of 5000000
+ 1934545 words of memory out of 5000000
  37957 multiletter control sequences out of 15000+600000
  558733 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,5n,139p,695b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,5n,139p,547b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on c:\Users\Lukas\Documents\ChatGPT_autoprompt\LaTeX\Cover\cover
 .pdf (1 page).

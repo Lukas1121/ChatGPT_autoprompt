@@ -106,5 +106,50 @@
         "email": "Lukieminator@gmail.com",
         "date_applied": "2024-07-08",
         "danish": false
+    },
+    {
+        "job_link": "https://candidate.hr-manager.net/applicationinit.aspx?cid=1639&projectid=143802&departmentid=18963&mediaid=4616",
+        "company": "Energi Danmark",
+        "job_title": "Data Engineer",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1483205/senior-architect-data-analytics-gdask-viby",
+        "company": "Arla",
+        "job_title": "Senior Architect - Data Analytics",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://jobs.grundfos.com/job/head-of-ai-solutions/70903-en_gb",
+        "company": "Grundfos",
+        "job_title": "Head of AI Solutions",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://jobs.grundfos.com/job/data-engineer/70772-en_gb",
+        "company": "Grundfos",
+        "job_title": "Senior Data Engineer",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://jobs.grundfos.com/job/associate-data-engineer/70771-en_gb",
+        "company": "Grundfos",
+        "job_title": "Associate Data Engineer",
+        "contact_person": "Thomas Asger Hansen",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
     }
 ]

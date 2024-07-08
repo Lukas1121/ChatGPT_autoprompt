@@ -56,12 +56,12 @@ class CoverLetterGenerator:
         )
 
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are an assistant who helps with text extraction."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=300,  # Increase the token limit
+            max_tokens=600,  # Increase the token limit
             n=1,
             stop=None,
             temperature=0.7
@@ -109,15 +109,19 @@ class CoverLetterGenerator:
         )
         generated_text = response.choices[0].message.content.strip()
         return generated_text
-    
+
+
     def save_cover_letter(self, content, company_name):
         latex_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'LaTeX', 'Cover', 'cover.tex')
 
         with open(latex_file_path, 'r', encoding='utf-8') as file:
             main_tex_content = file.read()
 
-        # Escape underscores for LaTeX
-        company_name_latex = company_name.replace('_', '\\_')
+        # Escape underscores for LaTeX and handle unknown company name
+        if company_name.lower() == 'unknown':
+            company_name_latex = ''
+        else:
+            company_name_latex = company_name.replace('_', '\\_')
 
         main_tex_content = re.sub(r'\\companyname\{[^}]*\}', r'\\companyname{' + company_name_latex + '}', main_tex_content)
 
@@ -131,6 +135,7 @@ class CoverLetterGenerator:
 
         with open(latex_file_path, 'w', encoding='utf-8') as file:
             file.write(new_tex_content)
+
 
 
     def compile_latex_to_pdf(self, company_name, position_title):

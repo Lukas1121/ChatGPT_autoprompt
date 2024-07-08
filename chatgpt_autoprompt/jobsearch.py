@@ -85,7 +85,7 @@ class JobSearch:
         self.job_links = valid_job_links
         return job_html_pages
     
-    def construct_extraction_prompt(self, html_content):
+    def construct_extraction_prompt(self, html_content, html_link):
         soup = BeautifulSoup(html_content, 'html.parser')
 
         for tag in soup(['script', 'style', 'footer', 'nav', 'header', 'aside']):
@@ -101,24 +101,23 @@ class JobSearch:
         max_length = 50000
         truncated_content = extracted_content[:max_length]
 
-        print(truncated_content)
-
         prompt = (
             "You are an assistant who extracts job descriptions from HTML content. "
             "I will provide you with the truncated HTML content of a job ad page, and you need to extract the job description from it. "
             "The job description is usually within meta tags, div tags, or main content sections. "
             "If you find the job description within multiple possible sections, concatenate them appropriately. "
             "If any additional information that clearly belongs to the job description is found, include it as well. "
+            "Make especially sure to include company name, position title and any email or contact person who might be related to the job ad. "
             "Here is the HTML content:\n\n"
             f"{truncated_content}\n\n"
-            "Extracted Job Description:"
+            "Here is the HTML link:\n\n"
+            f"{html_link}\n\n"
         )
         return prompt
 
 
-
-    def generate_job_description_with_gpt(self, html_content):
-        prompt = self.construct_extraction_prompt(html_content)
+    def generate_job_description_with_gpt(self, html_content, html_link):
+        prompt = self.construct_extraction_prompt(html_content, html_link)
 
         response = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -133,6 +132,11 @@ class JobSearch:
         )
 
         job_description = response.choices[0].message.content.strip()
+
+        print("Job Description:\n", job_description)
+        
+        input("Press Enter to continue...")
+
         return job_description
 
 def read_search_data(file_path):
