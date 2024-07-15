@@ -68,6 +68,9 @@ class EmailSender:
         return {"raw": raw_message}
 
     def send_message(self, sender, to, subject, message_text, files):
+
+        # input("Sending message, check content then Press Enter to continue...")
+
         message = self.create_message_with_attachment(
             sender, to, subject, message_text, files
         )

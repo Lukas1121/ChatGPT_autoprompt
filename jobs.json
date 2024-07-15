@@ -151,5 +151,266 @@
         "email": "Lukieminator@gmail.com",
         "date_applied": "2024-07-08",
         "danish": false
+    },
+    {
+        "job_link": "https://careers.arla.com/job/viby-j-data-engineer-viby-or-gdansk/1088234301/",
+        "company": "Arla Foods",
+        "job_title": "Data Engineer - Viby or Gdansk",
+        "contact_person": "Hiring Manager Stefan R. Stegaru",
+        "email": "stros@arlafoods.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://careers.arla.com/job/gdansk-senior-full-stack-developer-tailored-made-area-gda%c5%84skviby/1083848501/",
+        "company": "Arla IT Solutions",
+        "job_title": "Senior Full-stack Developer Tailored Made Area",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://careers.arla.com/job/viby-j-full-stack-developer-tailored-made-area-gda%c5%84skviby/1083750601/",
+        "company": "Arla IT Solutions",
+        "job_title": "Full-stack Developer Tailored Made Area",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12586522/data-engineer",
+        "company": "RDT Ingeni\u00f8rer ApS",
+        "job_title": "Data Engineer",
+        "contact_person": "Unknown",
+        "email": "denmark@rdtengineers.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.it-jobbank.dk/c?t=h1479248&ctx=j&utm_source=partner&utm_medium=jobindex&utm_campaign=jobannonce",
+        "company": "AURA A/S",
+        "job_title": "Data Engineer",
+        "contact_person": "S\u00f8ren Cramer",
+        "email": "scra@aura.dk",
+        "date_applied": "2024-07-08",
+        "danish": true
+    },
+    {
+        "job_link": "https://tdc.csod.com/ux/ats/careersite/17/home/requisition/9093?c=tdc",
+        "company": "Unknown",
+        "job_title": "Unknown",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-08",
+        "danish": false
+    },
+    {
+        "job_link": "https://joinus.saint-gobain.com/da/dnk/fin/p/07561/221978/nyuddannet-dataanalytiker-pricing-brondby-el-aarhus",
+        "company": "Saint-Gobain Distribution Denmark",
+        "job_title": "Nyuddannet Dataanalytiker \u2013 Pricing (Br\u00f8ndby el. Aarhus)",
+        "contact_person": "Head of Rebate Management Sofie Lykke",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://jobs.grundfos.com/job/people-analytics-specialist/70474-en_gb",
+        "company": "Grundfos",
+        "job_title": "People Analytics Specialist",
+        "contact_person": "Mette Christina Br\u00f8gger",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.job-karriere.dk/n1/job/esbjerg-data-scientist-form-fremtidens-elnet-med-dataanalyse-6715/1089253501/",
+        "company": "Elnetselskabet N1",
+        "job_title": "Data Scientist - Form Fremtidens Elnet med Dataanalyse",
+        "contact_person": "Lasse M\u00f8ller",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://candidate.hr-manager.net/applicationinit.aspx?cid=1639&projectid=143787&departmentid=18969&mediaid=4616",
+        "company": "Energi Danmark",
+        "job_title": "Business Systems Developer",
+        "contact_person": "Smail Kozarcanin",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://candidate.hr-manager.net/applicationinit.aspx?cid=1639&projectid=143789&departmentid=18969&mediaid=4616",
+        "company": "Energi Danmark",
+        "job_title": "Energy Data Analyst",
+        "contact_person": "Smail Kozarcanin",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1461834/business-intelligence-konsulent",
+        "company": "itm8",
+        "job_title": "Business Intelligence Konsulent",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://bestseller.com/careers/jobs/job-detail/15693",
+        "company": "BESTSELLER",
+        "job_title": "AI Application Engineer",
+        "contact_person": "Emil Hartvig Pedersen",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12617497/phd-in-systems-biology-bioinformatics-multiomic-systems-biology-of-in-vitro-produced-cattle-embryos-and-calves-movec",
+        "company": "Aarhus Universitet",
+        "job_title": "PhD in Systems Biology & Bioinformatics MultiOmic Systems Biology of In Vitro produced cattle Embryos and Calves (MOVEC)",
+        "contact_person": "Haja Kadarmideen and Henrik Callesen",
+        "email": "haja.k@anivet.au.dk",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.au.dk/om/stillinger/job/studentermedhjaelp-med-data-bi-kompetencer-soeges-til-it-vest-1",
+        "company": "It-vest - samarbejdende universiteter",
+        "job_title": "Studentermedhj\u00e6lp med data-/BI-kompetencer",
+        "contact_person": "Bettina Lundgaard Hansen",
+        "email": "blh@it-vest.dk",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12604940/vi-soeger-studentermedhjaelpere-til-geus-med-interesse-indenfor-geoteknik-geofysik-og-datascience",
+        "company": "GEUS",
+        "job_title": "Studentermedhj\u00e6lper (student assistant)",
+        "contact_person": "Torben Bach and Verner Brandbyge Ernstsen",
+        "email": "tba@geus.dk",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.au.dk/om/stillinger/job/postdoc-in-data-science-focusing-on-statistical-and-machine-learning-methods-for-genomic-research-in-admixed-populations",
+        "company": "Center for Quantitative Genetics and Genomics (QGG)",
+        "job_title": "Postdoc in Data Science focusing on statistical and machine learning methods for genomic research in admixed populations",
+        "contact_person": "Emre Karaman",
+        "email": "emre@qgg.au.dk",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/r12613551/kan-du-bygge-bro-mellem-teknologi-og-hverdag",
+        "company": "Herning Kommune",
+        "job_title": "IT-konsulent i Teknik og Milj\u00f8",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.au.dk/om/stillinger/job/bioinformatics-data-science-postdoc-analysing-mutation-processes-in-the-human-genome-1",
+        "company": "Institut for Klinisk Medicin - Molekyl\u00e6r Medicinsk afdeling (MOMA) - Aarhus University",
+        "job_title": "Bioinformatics/Data Science Postdoc: Analysing mutation processes in the human genome",
+        "contact_person": "Associate Professor S\u00f8ren Besenbacher",
+        "email": "besenbacher@clin.au.dk",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.au.dk/om/stillinger/job/assistant-professor-in-landscape-biogeochemistry",
+        "company": "Aarhus University",
+        "job_title": "Assistant Professor in Landscape Biogeochemistry",
+        "contact_person": "Professor Klaus Butterbach-Bahl",
+        "email": "klaus.butterbach-bahl@agro.au.dk",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://smrtr.io/mcvdd",
+        "company": "BEUMER Group",
+        "job_title": "Software Tools Engineer",
+        "contact_person": "Talent Acquisition Specialist Eva Holm Mikkelsen",
+        "email": "[email protected]",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://jobs.grundfos.com/job/senior-frontend-software-engineer/69933-en_gb",
+        "company": "Unknown",
+        "job_title": "Senior Frontend Software Engineer",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.envidan.com/da/ledige-stillinger/projektleder-software/",
+        "company": "Envidan",
+        "job_title": "Projektleder til softwareafdeling",
+        "contact_person": "Peter Carlsen",
+        "email": "pca@envidan.dk",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://jobs.smartrecruiters.com/jysk/743999998157275-senior-software-engineer-java-backend-development?trid=9c834889-bbb7-437c-a553-3bcb9710b121",
+        "company": "JYSK",
+        "job_title": "Senior Software Engineer",
+        "contact_person": "Team Leader",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://termaas.hr-on.com/show-job/149025&locale=en_us",
+        "company": "Terma A/S",
+        "job_title": "System Engineer - Middleware/IT Infrastructure",
+        "contact_person": "Mikael \u00d8rum Damgaard",
+        "email": "modm@terma.com",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://epico.dk/jobs/job/10ab4c9b-1b32-ef11-8409-000d3a25833d",
+        "company": "JYSK A/S",
+        "job_title": "Frontend Software Engineer",
+        "contact_person": "Michael Engelbreth",
+        "email": "mve@epico.dk",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://epico.dk/jobs/job/681ceb1c-1d32-ef11-8409-000d3a25833d",
+        "company": "JYSK A/S",
+        "job_title": "Senior Software Engineer",
+        "contact_person": "Michael Engelbreth",
+        "email": "mve@epico.dk",
+        "date_applied": "2024-07-10",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.au.dk/om/stillinger/job/cloud-engineer",
+        "company": "Institut for Kultur og Samfund - Center for Humanities Computing Aarhus",
+        "job_title": "Cloud engineer",
+        "contact_person": "Kristoffer L. Nielbo and Gerd Bech Thomsen",
+        "email": "kln@cas.au.dk and gebeth@au.dk",
+        "date_applied": "2024-07-10",
+        "danish": false
+    },
+    {
+        "job_link": "https://dkcareers.team.blue/jobs/4633850-software-team-lead",
+        "company": "team.blue",
+        "job_title": "Software Team Lead",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-10",
+        "danish": false
     }
 ]

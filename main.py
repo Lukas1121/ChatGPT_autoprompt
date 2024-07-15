@@ -64,6 +64,30 @@ def read_existing_job_links(file_path):
                 pass
     return existing_links
 
+def is_job_relevant(job_description, client):
+    prompt = (
+        "You are an assistant who determines the relevance of job descriptions based on specific keywords. "
+        "If the job description contains keywords like 'senior', 'professor', 'post-doc', or 'PhD', "
+        "it should be considered not relevant. Otherwise, it should be considered relevant. "
+        "Please analyze the following job description and return 'false' if it is not relevant, and 'true' if it is relevant:\n\n"
+        f"{job_description}\n"
+    )
+    
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are an assistant who helps with text analysis."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=50,
+        n=1,
+        stop=None,
+        temperature=0.0
+    )
+
+    relevance_result = response.choices[0].message.content.strip().lower()
+    return relevance_result == 'true'
+
 def process_job(search, existing_job_links, cover_letter_generator, processed_links_path, client):
     keyword = search['keyword']
     location = search['location']
@@ -85,6 +109,11 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
             continue  # Skip to the next job link
 
         job_description = job_search.generate_job_description_with_gpt(html_content, job_link)
+
+        if not is_job_relevant(job_description, client):
+            print(f"Job link {job_link} is not relevant. Skipping.")
+            append_job_link_json(processed_links_path, job_link, "Unknown", "Unknown", "Unknown", "Unknown", False)
+            continue
 
         extracted_info = cover_letter_generator.extract_company_position_email_and_contact_with_gpt(job_description)
         print(extracted_info)

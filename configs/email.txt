@@ -1,7 +1,5 @@
 Dear [Recipient's Name],
 
-I hope this email finds you well.
-
 I am writing to express my interest in the [Position] position at [Company Name]. If you are looking for creative and innovative solutions, I believe I would be a great fit for this role.
 
 To demonstrate my ability to think outside the box, I developed a fully automated Python script. This script scrapes job sites for listings that match my preferences, extracts relevant information, and uses the ChatGPT API to generate custom cover letters and emails. The email you are reading now, along with the attached cover letter and CV, were all created and sent automatically by this script.

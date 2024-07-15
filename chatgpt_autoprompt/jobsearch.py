@@ -33,7 +33,7 @@ class JobSearch:
         options.binary_location = FIREFOX_BINARY_PATH
         service = Service(GECKODRIVER_PATH)
         driver = webdriver.Firefox(service=service, options=options)
-        encoded_keyword = self.keyword.replace(' ', '+')
+        encoded_keyword = f"%27{self.keyword.replace(' ', '+')}%27"  # Use '%27' to encode single quotes around the keyword phrase
         driver.get(f"https://www.jobindex.dk/jobsoegning/{self.location}?q={encoded_keyword}")
         
         try:
@@ -88,16 +88,20 @@ class JobSearch:
     def construct_extraction_prompt(self, html_content, html_link):
         soup = BeautifulSoup(html_content, 'html.parser')
 
+        # Remove irrelevant tags
         for tag in soup(['script', 'style', 'footer', 'nav', 'header', 'aside']):
             tag.decompose()
 
-        relevant_sections = soup.find_all(['div', 'section', 'article'], class_=lambda x: x and 'job' in x.lower())
+        # Attempt to find the main job ad content
+        relevant_sections = soup.find_all(['div', 'section', 'article'], class_=lambda x: x and ('job' in x.lower() or 'listing' in x.lower() or 'content' in x.lower()))
 
         if not relevant_sections:
             relevant_sections = soup.find_all(['div', 'section', 'article'])
 
+        # Extract text content from the relevant sections
         extracted_content = ' '.join(section.get_text(separator=' ', strip=True) for section in relevant_sections)
 
+        # Truncate content to fit within the token limit
         max_length = 50000
         truncated_content = extracted_content[:max_length]
 
@@ -110,10 +114,11 @@ class JobSearch:
             "Make especially sure to include company name, position title and any email or contact person who might be related to the job ad. "
             "Here is the HTML content:\n\n"
             f"{truncated_content}\n\n"
-            "Here is the HTML link:\n\n"
+            "Here is the HTML link, you don't need to be able to click the link, but the company name or position title might be present in the html string:\n\n"
             f"{html_link}\n\n"
         )
         return prompt
+
 
 
     def generate_job_description_with_gpt(self, html_content, html_link):
@@ -132,10 +137,6 @@ class JobSearch:
         )
 
         job_description = response.choices[0].message.content.strip()
-
-        print("Job Description:\n", job_description)
-        
-        input("Press Enter to continue...")
 
         return job_description
 

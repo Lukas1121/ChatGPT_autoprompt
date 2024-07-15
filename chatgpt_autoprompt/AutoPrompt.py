@@ -117,13 +117,14 @@ class CoverLetterGenerator:
         with open(latex_file_path, 'r', encoding='utf-8') as file:
             main_tex_content = file.read()
 
-        # Escape underscores for LaTeX and handle unknown company name
         if company_name.lower() == 'unknown':
             company_name_latex = ''
         else:
             company_name_latex = company_name.replace('_', '\\_')
 
         main_tex_content = re.sub(r'\\companyname\{[^}]*\}', r'\\companyname{' + company_name_latex + '}', main_tex_content)
+
+        content = self.escape_latex(content)
 
         start_placeholder = "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THIS SECTION HERE"
         end_placeholder = "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNTIL HERE"
@@ -137,8 +138,22 @@ class CoverLetterGenerator:
             file.write(new_tex_content)
 
 
+    def escape_latex(self, content):
+        replacements = {
+            '&': r'\&',
+            '%': r'\%',
+            '$': r'\$',
+            '#': r'\#',
+        }
+        for original, replacement in replacements.items():
+            content = content.replace(original, replacement)
+        return content
+
+    def sanitize_filename(self, filename):
+        return filename.replace("\\", "_").replace("/", "_")
 
     def compile_latex_to_pdf(self, company_name, position_title):
+
         latex_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'LaTeX', 'Cover', 'cover.tex')
         output_directory = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'LaTeX', 'Cover')
         output_filename = f"{company_name}_{position_title}_cover_letter.pdf"
@@ -146,17 +161,21 @@ class CoverLetterGenerator:
 
         xelatex_path = 'xelatex'
 
-        # Remove the existing file if it exists
         if os.path.exists(output_path):
             os.remove(output_path)
-            print(f"Removed existing file: {output_path}")
 
         try:
+            # Compile the LaTeX file to PDF
             subprocess.run([xelatex_path, '-output-directory', output_directory, latex_file_path], check=True)
             pdf_output_path = os.path.join(output_directory, 'cover.pdf')
+            
+            # Verify if the PDF file exists
             if os.path.exists(pdf_output_path):
+                # Ensure the output directory exists
+                if not os.path.exists(self.output_folder):
+                    os.makedirs(self.output_folder)
+                
                 os.rename(pdf_output_path, output_path)
-                print(f"PDF saved to: {output_path}")
             else:
                 print("PDF compilation failed. PDF file not found.")
         except subprocess.CalledProcessError as e:
@@ -217,11 +236,14 @@ class CoverLetterGenerator:
         danish = job_info['danish'] 
         job_link = job_info['job_link']
 
+        sanitized_company_name = self.sanitize_filename(company_name)
+        sanitized_position_title = self.sanitize_filename(position_title)
+
         prompt = self.construct_prompt(job_add_text, self.cv_text, self.cover_letter_template, self.considerations_text)
         generated_cover_letter = self.generate_cover_letter_with_gpt(prompt)
         
-        self.save_cover_letter(generated_cover_letter, company_name)
-        self.compile_latex_to_pdf(company_name, position_title)
+        self.save_cover_letter(generated_cover_letter, sanitized_company_name)
+        self.compile_latex_to_pdf(sanitized_company_name, sanitized_position_title)
 
         if email_address.lower() == 'lukieminator@gmail.com':
             subject = f"Manual Application Required for {position_title} at {company_name}"
@@ -230,12 +252,12 @@ class CoverLetterGenerator:
             subject, body = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address, danish=danish)
 
         email_sender = EmailSender()
-        cover_letter_path = os.path.join(self.output_folder, f"{company_name}_{position_title}_cover_letter.pdf")
+        cover_letter_path = os.path.join(self.output_folder, f"{sanitized_company_name}_{sanitized_position_title}_cover_letter.pdf")
         cv_path = os.path.join(self.output_folder, 'CV_Dansk_Lukas_Zeppelin.pdf') if danish else os.path.join(self.output_folder, 'CV_English_Lukas_Zeppelin.pdf')
         nir_recommendation_path = os.path.join(self.output_folder, 'NIR_Anbefaling.pdf')
         ti_recommendation_path = os.path.join(self.output_folder, 'TI_Anbefaling_LukasZeppelin.pdf')
 
         files = [cover_letter_path, cv_path, nir_recommendation_path, ti_recommendation_path]
 
-
         email_sender.send_message('Lukas.zeppelin.ry@gmail.com', email_address, subject, body, files)
+

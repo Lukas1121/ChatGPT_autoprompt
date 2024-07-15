@@ -1,23 +1,39 @@
 {
     "searches": [
         {
-            "keyword": "IT-konsulent",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "Data-engineer",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "Data engineer",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "Data-science",
-            "location": "region-midtjylland"
-        },
-        {
             "keyword": "Data science",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Python developer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Software engineer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Machine learning engineer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "AI specialist",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Technical consultant",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "X-ray data analyst",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Scientific software developer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "IT konsulent",
             "location": "region-midtjylland"
         }
     ]
