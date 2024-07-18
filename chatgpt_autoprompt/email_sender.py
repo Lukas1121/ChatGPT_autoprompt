@@ -12,7 +12,6 @@ from googleapiclient.discovery import build
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
 
-
 class EmailSender:
     def __init__(
         self, credentials_path="configs/credentials.json", token_path="token.json"

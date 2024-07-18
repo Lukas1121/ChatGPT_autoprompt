@@ -94,7 +94,7 @@ class CoverLetterGenerator:
         return prompt
 
     def generate_cover_letter_with_gpt(self, prompt):
-        prompt += "\nPlease make sure that each section is enclosed with the \\lettercontent{} tags. Also, the cover letter is not allowed to exceed the template in length. It can be shorter, but no longer."
+        prompt += "\nPlease make sure that each section is enclosed with the \\lettercontent{} tags. Also, the cover letter is not allowed to exceed the template in length by more than 3 or 4 sentences. It can be shorter, but no longer than the aforementioned 3 or 4 sentences."
 
         response = self.client.chat.completions.create(
             model="gpt-4",

@@ -466,5 +466,95 @@
         "email": "Lukieminator@gmail.com",
         "date_applied": "2024-07-15",
         "danish": false
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1486671/medarbejdere-soeges",
+        "company": "Tech Automation ApS",
+        "job_title": "Medarbejdere",
+        "contact_person": "Jesper Juul",
+        "email": "jj@tech-automation.dk",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://careers.nature-energy.com/jobs/4732669-automation-engineer?promotion=1087262-jobindex",
+        "company": "Nature Energy",
+        "job_title": "Automation Engineer",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-18",
+        "danish": false
+    },
+    {
+        "job_link": "https://www.randstad.dk/jobs/automation-engineer_skjern_11654/?utm_campaign=robot_annonce&utm_medium=post-paid-jobslot&utm_source=jobindex",
+        "company": "VM Tarm A/S",
+        "job_title": "Automation Engineer",
+        "contact_person": "Jakob Hove",
+        "email": "jakob.hove@randstad.dk",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.sinus-installation.dk/job/automatiktekniker-laerling-soges/",
+        "company": "Sinus Installation A/S",
+        "job_title": "Automatiktekniker L\u00e6rling",
+        "contact_person": "B\u00f8rge K. Pedersen",
+        "email": "hr@sinus.dk",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://candidate.hr-manager.net/applicationinit.aspx?cid=2761&projectid=143592&departmentid=18960&mediaid=5",
+        "company": "KILDE Automation",
+        "job_title": "Automation Engineer",
+        "contact_person": "J\u00f8rgen Alb\u00f8ge",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.jobindex.dk/jobannonce/h1484510/group-category-sourcing-manager-industrial-automation",
+        "company": "Solar",
+        "job_title": "Group Category Sourcing Manager \u2013 Industrial Automation",
+        "contact_person": "Rasmus Hebsg\u00e5rd Vemmelund",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-18",
+        "danish": false
+    },
+    {
+        "job_link": "https://jppol.dk/jobs/marketing-automation-specialist/",
+        "company": "Jyllands-Posten",
+        "job_title": "Marketing Automation Specialist",
+        "contact_person": "Kundeudviklingschef Rune Damsgaard",
+        "email": "rune.damsgaard@jp.dk",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://candidate.hr-manager.net/applicationinit.aspx?cid=2761&projectid=143594&departmentid=18956&mediaid=5",
+        "company": "KILDE Automation",
+        "job_title": "Indk\u00f8ber (Purchaser)",
+        "contact_person": "Frank Stokholm",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://www.stepstone.dk/jobannonce/korrektur/514032",
+        "company": "Johnson Controls",
+        "job_title": "Controls Project Engineer",
+        "contact_person": "Benny Madsen",
+        "email": "benny.madsen@jci.com",
+        "date_applied": "2024-07-18",
+        "danish": true
+    },
+    {
+        "job_link": "https://candidate.hr-manager.net/applicationinit.aspx?cid=2761&projectid=143593&departmentid=18960&mediaid=5",
+        "company": "Unknown",
+        "job_title": "Udvikler til programmeringsopgaver",
+        "contact_person": "Unknown",
+        "email": "Lukieminator@gmail.com",
+        "date_applied": "2024-07-18",
+        "danish": true
     }
 ]

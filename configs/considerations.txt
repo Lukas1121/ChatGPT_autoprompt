@@ -1,3 +1,8 @@
 When constructing the cover letter there are a couple of considerations i want you to make. I want you to pay attention to not over sell or exaggerate my skills, 
 for any requirements in the ad that i do not possess i want you to emphasize my broad skill range both with IT but also in the advanced sciences like physics, 
 chemistry and bio-physics, but most importantly you should not claim that i have experience in something that isn't stated in my CV or template cover letter.
+I also want to emphasize my skills with automation. I would like to highlight the project i am currently working on. 
+Here is the description of that project from my github
+
+"ChatGPT Autoprompt is a Python-based automation tool designed to streamline the job application process. It automates the search for job listings, extracts relevant details, generates customized cover letters, and prepares emails for application submission."
+
