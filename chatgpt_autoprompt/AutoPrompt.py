@@ -88,6 +88,7 @@ class CoverLetterGenerator:
             f"Job Ad:\n{job_add}\n\n"
             f"My CV:\n{cv}\n\n"
             f"Considerations:\n{considerations}\n\n"
+            "Make sure to write your response in the same language as the ad. I.e. if the ad is in danish then write in danish"
             "Please edit the text within the \\lettercontent{} tags accordingly without exaggerating my skills or claiming experience I do not have. "
             "Finally, give no response other than the exact code/cover letter, as I am using a piece of code to convert your prompt directly into a latex project and your response will be captured by this as well causing issues."
         )

@@ -5,6 +5,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import logging
@@ -33,26 +36,107 @@ class JobSearch:
         options.binary_location = FIREFOX_BINARY_PATH
         service = Service(GECKODRIVER_PATH)
         driver = webdriver.Firefox(service=service, options=options)
-        encoded_keyword = f"%27{self.keyword.replace(' ', '+')}%27"  # Use '%27' to encode single quotes around the keyword phrase
-        driver.get(f"https://www.jobindex.dk/jobsoegning/{self.location}?q={encoded_keyword}")
+
+        page_number = 1
+        while True:
+            encoded_keyword = f"%27{self.keyword.replace(' ', '+')}%27"  # Use '%27' to encode single quotes around the keyword phrase
+            url = f"https://www.jobindex.dk/jobsoegning/{self.location}?page={page_number}&q={encoded_keyword}"
+            driver.get(url)
+            
+            try:
+                logger.info(f"Navigated to {url}")
+                WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CLASS_NAME, "PaidJob"))
+                )
+                logger.info("Search results loaded")
+                
+                soup = BeautifulSoup(driver.page_source, 'html.parser')
+                job_links = self.extract_job_links(soup)
+                if not job_links:
+                    logger.info("No more job links found, stopping search.")
+                    break
+
+                self.job_links.extend(job_links)
+                page_number += 1
+
+            except Exception as e:
+                logger.error("An error occurred: %s", e)
+                break
         
-        try:
-            logger.info("Navigated to Jobindex.dk")
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "PaidJob"))
-            )
-            logger.info("Search results loaded")
-            
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            self.job_links = self.extract_job_links(soup)
-            job_count = self.extract_job_count(soup)
-        except Exception as e:
-            logger.error("An error occurred: %s", e)
-            job_count = 0
-        finally:
-            driver.quit()
-            
-        return job_count
+        driver.quit()
+        return len(self.job_links)
+    
+    def search_linkedin(self):
+        profile_path = r"C:\Users\Lukas\AppData\Roaming\Mozilla\Firefox\Profiles\4r5zndpw.default-release"  # Replace with your actual profile path
+        options = Options()
+        options.binary_location = FIREFOX_BINARY_PATH
+        profile = FirefoxProfile(profile_path)
+        options.profile = profile
+        service = Service(GECKODRIVER_PATH)
+        driver = webdriver.Firefox(service=service, options=options)
+
+        encoded_keyword = self.keyword.replace(' ', '%20')
+        geo_id = "101286674"  # Geo ID for Middle Jutland
+        start = 0
+        while start < 75:  # Limit to first 50 listings
+            url = f"https://www.linkedin.com/jobs/search/?keywords={encoded_keyword}&geoId={geo_id}&start={start}&refresh=true"
+            driver.get(url)
+
+            try:
+                logger.info(f"Navigated to {url}")
+                WebDriverWait(driver, 10).until(
+                    EC.presence_of_all_elements_located((By.CLASS_NAME, "jobs-search-results__list-item"))
+                )
+                logger.info("Search results loaded")
+
+                job_links = self.extract_linkedin_job_links(driver)
+                if job_links:
+                    self.job_links.extend(job_links)
+                else:
+                    logger.info("No job links found on LinkedIn.")
+                    break
+
+                start += 25  # LinkedIn pagination increases by 25
+
+            except Exception as e:
+                logger.error("An error occurred: %s", e)
+                break
+
+        driver.quit()
+        return len(self.job_links)
+
+    def extract_linkedin_job_links(self, driver):
+        job_links = []
+        job_cards = driver.find_elements(By.CLASS_NAME, 'jobs-search-results__list-item')
+
+        for card in job_cards:
+            try:
+                # Retry mechanism for stale elements
+                for attempt in range(3):
+                    try:
+                        # Check for "Easy Apply" button and skip such jobs
+                        if len(card.find_elements(By.XPATH, ".//button[contains(@aria-label, 'Easy Apply')]")) > 0:
+                            break  # Skip this job card
+
+                        # Extract the job link
+                        job_link_element = card.find_element(By.CSS_SELECTOR, "a.job-card-list__title")
+                        job_link = job_link_element.get_attribute("href")
+                        job_links.append(job_link)
+                        break
+                    except StaleElementReferenceException:
+                        if attempt < 2:
+                            time.sleep(1)  # Wait before retrying
+                        else:
+                            logger.error(f"Stale element reference error after 3 attempts: {card}")
+                            raise
+                    except NoSuchElementException as e:
+                        logger.error(f"NoSuchElementException: {e}")
+                        break
+            except Exception as e:
+                logger.error(f"An error occurred while processing a job card: {e}")
+                continue
+
+        return job_links
     
     def extract_job_links(self, soup):
         job_links = []
@@ -98,7 +182,7 @@ class JobSearch:
 
         extracted_content = ' '.join(section.get_text(separator=' ', strip=True) for section in relevant_sections)
 
-        max_length = 50000
+        max_length = 45000
         truncated_content = extracted_content[:max_length]
 
         prompt = (

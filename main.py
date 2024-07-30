@@ -25,14 +25,19 @@ config_paths = {
     'output_folder': 'output'
 }
 
-def append_job_link_json(file_path, job_link, company, job_title, contact_person, email, danish):
+def append_job_link_json(file_path, job_link, company, job_title, contact_person, email, danish, relevant=True):
+    if relevant:
+        date_applied = datetime.now().strftime('%Y-%m-%d')
+    else:
+        date_applied = "Job irrelevant, not applied"
+
     entry = {
         "job_link": job_link.strip(),
         "company": company,
         "job_title": job_title,
         "contact_person": contact_person,
         "email": email,
-        "date_applied": datetime.now().strftime('%Y-%m-%d'),
+        "date_applied": date_applied,
         "danish": danish
     }
 
@@ -64,6 +69,7 @@ def read_existing_job_links(file_path):
                 pass
     return existing_links
 
+
 def is_job_relevant(job_description, client):
     with open(config_paths['cv'], 'r', encoding='utf-8') as file:
         cv_text = file.read()
@@ -71,7 +77,8 @@ def is_job_relevant(job_description, client):
     prompt = (
         "You are an assistant who determines the relevance of job descriptions based on specific keywords and the provided CV. "
         "The job description should be considered relevant if it contains IT or science aspects related to biophysics, python programming, "
-        "automation using programming, or IT consultancy, and if it aligns with the provided CV. "
+        "automation using programming, or IT consultancy, or if it aligns with the provided CV. "
+        "It does not need to contain all aspects, only one or more. "
         "Additionally, if the job title contains keywords like 'senior', 'professor', 'post-doc', or 'PhD', it should be considered not relevant. "
         "Please analyze the following job description and the CV, then return 'false' if it is not relevant, and 'true' if it is relevant:\n\n"
         "Job Description:\n"
@@ -89,7 +96,7 @@ def is_job_relevant(job_description, client):
         max_tokens=50,
         n=1,
         stop=None,
-        temperature=0.0
+        temperature=0.7  # Increase temperature to allow for more flexible interpretation
     )
 
     relevance_result = response.choices[0].message.content.strip().lower()
@@ -99,11 +106,17 @@ def is_job_relevant(job_description, client):
 def process_job(search, existing_job_links, cover_letter_generator, processed_links_path, client):
     keyword = search['keyword']
     location = search['location']
-    print(f"Searching for keyword: {keyword} in location: {location}")
+    platforms = search.get('platforms', ['jobindex', 'linkedin'])  # Default to both if not specified
+    print(f"Searching for keyword: {keyword} in location: {location} on platforms: {platforms}")
     
     job_search = JobSearch(keyword, location, client)
-    job_count = job_search.search_jobindex()
-    
+    job_count = 0
+
+    if 'jobindex' in platforms:
+        job_count += job_search.search_jobindex()
+    if 'linkedin' in platforms:
+        job_count += job_search.search_linkedin()
+
     print(f"Total job results found: {job_count}")
     
     job_html_pages = job_search.fetch_job_html_pages()
@@ -118,11 +131,6 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
 
         job_description = job_search.generate_job_description_with_gpt(html_content, job_link)
 
-        if not is_job_relevant(job_description, client,):
-            print(f"Job link {job_link} is not relevant. Skipping.")
-            append_job_link_json(processed_links_path, job_link, "Unknown", "Unknown", "Unknown", "Unknown", False)
-            continue
-
         extracted_info = cover_letter_generator.extract_company_position_email_and_contact_with_gpt(job_description)
         print(extracted_info)
 
@@ -131,6 +139,16 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
         contact_person = extracted_info.get('contact', 'Unknown').strip()
         email = extracted_info.get('email', 'Unknown').strip()
         danish = extracted_info.get('danish', 'false').strip().lower() == 'true'
+
+        if not company or company.lower() == 'unknown':
+            print(f"Job link {job_link} does not have a valid company name. Skipping.")
+            append_job_link_json(processed_links_path, job_link, company, job_title, contact_person, email, danish, relevant=False)
+            continue
+
+        if not is_job_relevant(job_description, client):
+            print(f"Job link {job_link} is not relevant. Skipping.")
+            append_job_link_json(processed_links_path, job_link, company, job_title, contact_person, email, danish, relevant=False)
+            continue
 
         if not email or email.lower() == 'unknown':
             email = 'Lukieminator@gmail.com'
