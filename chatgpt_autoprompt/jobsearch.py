@@ -78,7 +78,7 @@ class JobSearch:
         encoded_keyword = self.keyword.replace(' ', '%20')
         geo_id = "101286674"  # Geo ID for Middle Jutland
         start = 0
-        while start < 75:  # Limit to first 50 listings
+        while start < 100:  # Limit to first 50 listings
             url = f"https://www.linkedin.com/jobs/search/?keywords={encoded_keyword}&geoId={geo_id}&start={start}&refresh=true"
             driver.get(url)
 
@@ -96,7 +96,7 @@ class JobSearch:
                     logger.info("No job links found on LinkedIn.")
                     break
 
-                start += 25  # LinkedIn pagination increases by 25
+                start += 10  # LinkedIn pagination increases by 25
 
             except Exception as e:
                 logger.error("An error occurred: %s", e)

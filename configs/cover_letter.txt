@@ -1,26 +1,34 @@
+lettercontent{I am writing to express my interest in the position of Data Engineer in Risk Management.
+With a background in nanoscience specializing in bio- and beam-physics, and experience
+within IT consultancy and support, I am enthusiastic about the opportunity to join your team
+and contribute to the development of your next-generation market risk management
+platform.}
 
-\lettercontent{Jeg skriver for at udtrykke min interesse i stillingen som Controls Project Engineer hos
-Johnson Controls. Med en baggrund inden for nanoscience med specialisering i bio- og
-strålefysik samt erfaring inden for konsulentarbejde og IT-support, er jeg begejstret for
-muligheden for at blive en del af jeres team og bidrage til udviklingen af jeres projekter.}
+lettercontent{As the founder and principal IT consultant at ZeppelinTech Solutions, I have developed
+customized software solutions, including a Python tool for enhanced X-ray data analysis for
+ESRF. This project, part of the easistrain package on GitHub, demonstrates my ability to
+quickly learn and integrate new technologies to meet specific customer needs. This
+experience, I believe, aligns well with your need for a skilled Data Engineer who can take a
+leading role in building and maintaining your data platform and code library.}
 
-\lettercontent{Som grundlægger og hoved IT-konsulent hos ZeppelinTech Solutions har jeg udviklet
-skræddersyede softwareløsninger, herunder et Python-værktøj til forbedret
-røntgendataanalyse for ESRF. Disse erfaringer har givet mig en stærk fundament i at
-identificere og implementere optimeringsopgaver, hvilket vil være værdifuldt i rollen som
-Controls Project Engineer.}
+lettercontent{During my internship at the Danish Technological Institute, I optimized workflows by
+developing Python scripts for data conversion and treatment. I also have practical
+experience with Linux environments and GitHub for version control. These experiences
+have provided me with a strong foundation in identifying and implementing optimization
+tasks, which I believe will be invaluable in the role of a Data Engineer.}
 
-\lettercontent{Under min praktik hos Dansk Teknologisk Institut optimerede jeg arbejdsprocesser ved at
-udvikle Python-scripts til datakonvertering og behandling. Jeg har også praktisk erfaring
-med projekthåndtering og implementering af IT-løsninger, hvilket sikrer, at jeg kan
-planlægge og sikre fremdrift i processer med deltagelse af forskellige aktører.}
+lettercontent{My education in nanoscience from the University of Copenhagen, with a specialization in
+bio- and beam-physics, has given me a deep understanding of data integrity – a crucial
+aspect of financial and risk management models and reporting. Additionally, my experience
+with project management and the implementation of IT solutions ensures that I can plan
+and ensure progress in processes involving various stakeholders.}
 
-\lettercontent{Min uddannelse i nanoscience fra Københavns Universitet med specialisering i bio- og
-strålefysik har givet mig en dyb forståelse for teknisk dokumentation og arbejdsgange
-inden for komplekse teknologiske systemer. Jeg er motiveret af at levere optimale
-løsninger gennem kundespecifik fejlfinding, problemløsning og undervisning.}
+lettercontent{I am motivated by delivering optimal solutions through customer-specific troubleshooting,
+problem-solving, and teaching. My ability to structure, prioritize, and take independent
+responsibility for my tasks, as well as my analytical skills, enable me to uncover and
+describe complex issues. I look forward to the opportunity to work independently and
+systematically to deliver the best solutions for your risk management team.}
 
-\lettercontent{eg er begejstret for muligheden for at bidrage til jeres teams succes og ser frem til at
-diskutere, hvordan mine færdigheder og erfaringer matcher jeres behov. Tak fordi I
-overvejer min ansøgning.}
-
+lettercontent{I am excited about the opportunity to contribute to your team's success and look forward to
+discussing how my skills and experiences align with your needs. Thank you for considering
+my application.}

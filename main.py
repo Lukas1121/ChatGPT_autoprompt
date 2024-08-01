@@ -29,12 +29,12 @@ def append_job_link_json(file_path, job_link, company, job_title, contact_person
     if relevant:
         date_applied = datetime.now().strftime('%Y-%m-%d')
     else:
-        date_applied = "Job irrelevant, not applied"
+        date_applied = f"Job irrelevant, not applied: date = {datetime.now().strftime('%Y-%m-%d')}"
 
     entry = {
         "job_link": job_link.strip(),
         "company": company,
-        "job_title": job_title,
+        "job_title": job_title, 
         "contact_person": contact_person,
         "email": email,
         "date_applied": date_applied,
@@ -51,6 +51,10 @@ def append_job_link_json(file_path, job_link, company, job_title, contact_person
 
     if any(existing_entry['job_link'].strip().lower() == job_link.strip().lower() for existing_entry in data):
         print(f"Job link {job_link} already exists in the JSON file. Skipping.")
+        return
+    
+    if any(existing_entry['company'].strip().lower() == company.strip().lower() and existing_entry['job_title'].strip().lower() == job_title.strip().lower() for existing_entry in data):
+        print(f"Job with company '{company}' and title '{job_title}' already exists in the JSON file. Skipping.")
         return
 
     data.append(entry)
@@ -69,15 +73,42 @@ def read_existing_job_links(file_path):
                 pass
     return existing_links
 
+def read_existing_job_entries(file_path):
+    existing_entries = []
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            try:
+                existing_entries = json.load(file)
+            except json.JSONDecodeError:
+                pass
+    return existing_entries
 
 def is_job_relevant(job_description, client):
     with open(config_paths['cv'], 'r', encoding='utf-8') as file:
         cv_text = file.read()
 
+    key_skills = [
+        "Adaptability and Embracing New Technologies",
+        "Python Programming Expertise",
+        "Versatile Skillset",
+        "Proven Consultancy Track Record",
+        "Experience with data analysis, conversion, and treatment",
+        "Collaboration with ESRF",
+        "Development of tailored software solutions",
+        "Experience with industry-specific software solutions",
+        "X-ray data analysis",
+        "Python scripts for data conversion",
+        "Data treatment scripts",
+        "Data processing pipeline",
+        "Simulated atrial fibrillation",
+        "Analyzed Raman microscopy images",
+        "Neutron moderation using Density Functional Theory"
+    ]
+
     prompt = (
         "You are an assistant who determines the relevance of job descriptions based on specific keywords and the provided CV. "
-        "The job description should be considered relevant if it contains IT or science aspects related to biophysics, python programming, "
-        "automation using programming, or IT consultancy, or if it aligns with the provided CV. "
+        "The job description should be considered relevant if it contains IT or science aspects or anything related to the following key skills:\n\n"
+        f"{', '.join(key_skills)}\n\n"
         "It does not need to contain all aspects, only one or more. "
         "Additionally, if the job title contains keywords like 'senior', 'professor', 'post-doc', or 'PhD', it should be considered not relevant. "
         "Please analyze the following job description and the CV, then return 'false' if it is not relevant, and 'true' if it is relevant:\n\n"
@@ -88,7 +119,7 @@ def is_job_relevant(job_description, client):
     )
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             {"role": "system", "content": "You are an assistant who helps with text analysis."},
             {"role": "user", "content": prompt}
@@ -96,12 +127,11 @@ def is_job_relevant(job_description, client):
         max_tokens=50,
         n=1,
         stop=None,
-        temperature=0.7  # Increase temperature to allow for more flexible interpretation
+        temperature=0.2  # Increase temperature to allow for more flexible interpretation
     )
-
+ 
     relevance_result = response.choices[0].message.content.strip().lower()
     return relevance_result == 'true'
-
 
 def process_job(search, existing_job_links, cover_letter_generator, processed_links_path, client):
     keyword = search['keyword']
@@ -120,6 +150,8 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
     print(f"Total job results found: {job_count}")
     
     job_html_pages = job_search.fetch_job_html_pages()
+
+    existing_job_entries = read_existing_job_entries(processed_links_path)  # Load existing job entries
 
     for job_link, html_content in zip(job_search.job_links, job_html_pages):
         job_link = job_link.strip().lower()
@@ -143,6 +175,10 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
         if not company or company.lower() == 'unknown':
             print(f"Job link {job_link} does not have a valid company name. Skipping.")
             append_job_link_json(processed_links_path, job_link, company, job_title, contact_person, email, danish, relevant=False)
+            continue
+
+        if any(entry['company'].strip().lower() == company.lower() and entry['job_title'].strip().lower() == job_title.lower() for entry in existing_job_entries):
+            print(f"Job with company {company} and title {job_title} already exists. Skipping.")
             continue
 
         if not is_job_relevant(job_description, client):

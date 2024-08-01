@@ -84,11 +84,12 @@ class CoverLetterGenerator:
             "I want you to produce a cover letter using the provided text template. "
             "The cover letter should be targeted to the job advertisement and should draw inspiration from my CV, but the cover letter template may also be used as inspiration. "
             "When constructing the cover letter, please consider the following points:\n\n"
+            "The cover letter you generate may be shorter than the template, but no longer."
             f"Cover Letter Template:\n{cover_letter_template}\n\n"
             f"Job Ad:\n{job_add}\n\n"
             f"My CV:\n{cv}\n\n"
             f"Considerations:\n{considerations}\n\n"
-            "Make sure to write your response in the same language as the ad. I.e. if the ad is in danish then write in danish"
+            "Make sure to write the cover letter in the same language as the job ad"
             "Please edit the text within the \\lettercontent{} tags accordingly without exaggerating my skills or claiming experience I do not have. "
             "Finally, give no response other than the exact code/cover letter, as I am using a piece of code to convert your prompt directly into a latex project and your response will be captured by this as well causing issues."
         )
@@ -113,42 +114,30 @@ class CoverLetterGenerator:
 
 
     def save_cover_letter(self, content, company_name):
-        latex_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'LaTeX', 'Cover', 'cover.tex')
+            latex_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'LaTeX', 'Cover', 'cover.tex')
 
-        with open(latex_file_path, 'r', encoding='utf-8') as file:
-            main_tex_content = file.read()
+            with open(latex_file_path, 'r', encoding='utf-8') as file:
+                main_tex_content = file.read()
 
-        if company_name.lower() == 'unknown':
-            company_name_latex = ''
-        else:
-            company_name_latex = company_name.replace('_', '\\_')
+            if company_name.lower() == 'unknown':
+                company_name_latex = ''
+            else:
+                company_name_latex = self.escape_latex(company_name.replace('_', '\\_'))
 
-        main_tex_content = re.sub(r'\\companyname\{[^}]*\}', r'\\companyname{' + company_name_latex + '}', main_tex_content)
+            main_tex_content = re.sub(r'\\companyname\{[^}]*\}', r'\\companyname{' + company_name_latex + '}', main_tex_content)
 
-        content = self.escape_latex(content)
+            content = self.escape_latex(content)
 
-        start_placeholder = "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THIS SECTION HERE"
-        end_placeholder = "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNTIL HERE"
+            start_placeholder = "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THIS SECTION HERE"
+            end_placeholder = "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNTIL HERE"
 
-        before_content = main_tex_content.split(start_placeholder)[0]
-        after_content = main_tex_content.split(end_placeholder)[1]
+            before_content = main_tex_content.split(start_placeholder)[0]
+            after_content = main_tex_content.split(end_placeholder)[1]
 
-        new_tex_content = before_content + start_placeholder + '\n' + content + '\n' + end_placeholder + after_content
+            new_tex_content = before_content + start_placeholder + '\n' + content + '\n' + end_placeholder + after_content
 
-        with open(latex_file_path, 'w', encoding='utf-8') as file:
-            file.write(new_tex_content)
-
-
-    def escape_latex(self, content):
-        replacements = {
-            '&': r'\&',
-            '%': r'\%',
-            '$': r'\$',
-            '#': r'\#',
-        }
-        for original, replacement in replacements.items():
-            content = content.replace(original, replacement)
-        return content
+            with open(latex_file_path, 'w', encoding='utf-8') as file:
+                file.write(new_tex_content)
 
     def sanitize_filename(self, filename):
         return filename.replace("\\", "_").replace("/", "_")
@@ -195,9 +184,9 @@ class CoverLetterGenerator:
             f"Position: {position_title}\n"
             f"Contact: {contact_name}\n"
             f"Email: {email_address}\n"
-            "If the job advertisement is in Danish, then the email should also be in Danish. "
+            f"If Danish is true then write it in Danish = {danish}, if false then write it in english"
             "Make sure to keep popular jargon in its native language (e.g., 'web scraping' should not be translated as it would sound silly).\n"
-            "Finally the proper word for cover letter in danish is simply 'ansøgning'"
+            "If you write the email in danish then make sure to use the correct word for cover letter 'ansøgning'"
         )
 
         response = self.client.chat.completions.create(

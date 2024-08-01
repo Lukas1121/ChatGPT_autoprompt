@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.13)  30 JUL 2024 16:58
+This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.13)  1 AUG 2024 13:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,4 +587,58 @@ Package fontspec Info:
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
-(fontspec)         
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[OpenFonts/fonts/lato/Lato-Lig]/OT:script=latn;langu
+age=dflt;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Raleway-Medium(0)' created for font
+(fontspec)             'Raleway-Medium' with options [Path =
+(fontspec)             OpenFonts/fonts/raleway/].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[OpenFonts/fonts/raleway/Raleway-Medium]/OT:script=l
+atn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"[OpenFonts/fonts/raleway/Raleway-Medium]/OT:script=l
+atn;language=dflt;+smcp;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Lato-Bol(0)' created for font 'Lato-Bol'
+(fontspec)             with options [Path = OpenFonts/fonts/lato/].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[OpenFonts/fonts/lato/Lato-Bol]/OT:script=latn;langu
+age=dflt;"
+
+
+
+[1
+
+] (c:\Users\Lukas\Documents\ChatGPT_autoprompt\LaTeX\Cover\cover.aux)
+ ***********
+LaTeX2e <2024-06-01>
+L3 programming layer <2024-05-08>
+ ***********
+Package rerunfilecheck Info: File `cover.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+ ) 
+Here is how much of TeX's memory you used:
+ 15473 strings out of 409067
+ 287896 string characters out of 5757611
+ 1935545 words of memory out of 5000000
+ 37957 multiletter control sequences out of 15000+600000
+ 558733 words of font info for 75 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 102i,5n,139p,670b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on c:\Users\Lukas\Documents\ChatGPT_autoprompt\LaTeX\Cover\cover
+.pdf (1 page).

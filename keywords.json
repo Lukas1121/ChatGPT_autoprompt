@@ -1,6 +1,22 @@
 {
     "searches": [
         {
+            "keyword": "Technical consultant",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "X-ray data analyst",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Scientific software developer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Biofysiker",
+            "location":"region-midtjylland"
+        },
+        {
             "keyword": "physicist",
             "location":"region-midtjylland"
         },
@@ -10,6 +26,14 @@
         },
         {
             "keyword": "biotechnology",
+            "location":"region-midtjylland"
+        },
+        {
+            "keyword": "IT konsulent",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "IT consultant",
             "location":"region-midtjylland"
         },
         {
@@ -27,30 +51,6 @@
         {
             "keyword": "AI specialist",
             "location": "region-midtjylland"
-        },
-        {
-            "keyword": "Technical consultant",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "X-ray data analyst",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "Scientific software developer",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "IT konsulent",
-            "location": "region-midtjylland"
-        },
-        {
-            "keyword": "IT consultant",
-            "location":"region-midtjylland",
-        },
-        {
-            "keyword": "Biofysiker",
-            "location":"region-midtjylland"
         }
     ]
 }
