@@ -7,7 +7,7 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
-from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import logging
@@ -78,7 +78,7 @@ class JobSearch:
         encoded_keyword = self.keyword.replace(' ', '%20')
         geo_id = "101286674"  # Geo ID for Middle Jutland
         start = 0
-        while start < 100:  # Limit to first 50 listings
+        while start < 100:  # Limit to first 100 listings
             url = f"https://www.linkedin.com/jobs/search/?keywords={encoded_keyword}&geoId={geo_id}&start={start}&refresh=true"
             driver.get(url)
 
@@ -89,15 +89,28 @@ class JobSearch:
                 )
                 logger.info("Search results loaded")
 
-                job_links = self.extract_linkedin_job_links(driver)
-                if job_links:
-                    self.job_links.extend(job_links)
-                else:
-                    logger.info("No job links found on LinkedIn.")
-                    break
+                retries = 3
+                while retries > 0:
+                    try:
+                        job_links = self.extract_linkedin_job_links(driver)
+                        if job_links:
+                            self.job_links.extend(job_links)
+                        else:
+                            logger.info("No job links found on LinkedIn.")
+                            break
+                        break  # Exit retry loop if successful
+                    except StaleElementReferenceException as e:
+                        logger.error(f"Stale element reference error: {e}")
+                        retries -= 1
+                        time.sleep(1)
+                        if retries == 0:
+                            logger.error("Failed to retrieve job links after multiple attempts")
 
                 start += 10  # LinkedIn pagination increases by 25
 
+            except TimeoutException as e:
+                logger.error("Timeout waiting for search results: %s", e)
+                break
             except Exception as e:
                 logger.error("An error occurred: %s", e)
                 break
@@ -111,14 +124,12 @@ class JobSearch:
 
         for card in job_cards:
             try:
-                # Retry mechanism for stale elements
                 for attempt in range(3):
                     try:
                         # Check for "Easy Apply" button and skip such jobs
-                        if len(card.find_elements(By.XPATH, ".//button[contains(@aria-label, 'Easy Apply')]")) > 0:
-                            break  # Skip this job card
+                        # if len(card.find_elements(By.XPATH, ".//button[contains(@aria-label, 'Easy Apply')]")) > 0:
+                        #     break  # Skip this job card
 
-                        # Extract the job link
                         job_link_element = card.find_element(By.CSS_SELECTOR, "a.job-card-list__title")
                         job_link = job_link_element.get_attribute("href")
                         job_links.append(job_link)

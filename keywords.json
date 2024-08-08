@@ -9,6 +9,10 @@
             "location": "region-midtjylland"
         },
         {
+            "keyword": "IT consultant",
+            "location":"region-midtjylland"
+        },
+        {
             "keyword": "Scientific software developer",
             "location": "region-midtjylland"
         },
@@ -31,10 +35,6 @@
         {
             "keyword": "IT konsulent",
             "location": "region-midtjylland"
-        },
-        {
-            "keyword": "IT consultant",
-            "location":"region-midtjylland"
         },
         {
             "keyword": "Python developer",

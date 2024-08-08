@@ -84,19 +84,18 @@ class CoverLetterGenerator:
             "I want you to produce a cover letter using the provided text template. "
             "The cover letter should be targeted to the job advertisement and should draw inspiration from my CV, but the cover letter template may also be used as inspiration. "
             "When constructing the cover letter, please consider the following points:\n\n"
-            "The cover letter you generate may be shorter than the template, but no longer."
             f"Cover Letter Template:\n{cover_letter_template}\n\n"
             f"Job Ad:\n{job_add}\n\n"
             f"My CV:\n{cv}\n\n"
             f"Considerations:\n{considerations}\n\n"
-            "Make sure to write the cover letter in the same language as the job ad"
+            "It is extremely important that you write the cover letter in danish if the ad is in danish. Else write it in english."
             "Please edit the text within the \\lettercontent{} tags accordingly without exaggerating my skills or claiming experience I do not have. "
             "Finally, give no response other than the exact code/cover letter, as I am using a piece of code to convert your prompt directly into a latex project and your response will be captured by this as well causing issues."
         )
         return prompt
 
     def generate_cover_letter_with_gpt(self, prompt):
-        prompt += "\nPlease make sure that each section is enclosed with the \\lettercontent{} tags. Also, the cover letter is not allowed to exceed the template in length by more than 3 or 4 sentences. It can be shorter, but no longer than the aforementioned 3 or 4 sentences."
+        prompt += "\nPlease make sure that each section is enclosed with the \\lettercontent{} tags. Also, the cover letter is not allowed to exceed the template in length. It can be shorter, but no longer."
 
         response = self.client.chat.completions.create(
             model="gpt-4",
@@ -138,6 +137,19 @@ class CoverLetterGenerator:
 
             with open(latex_file_path, 'w', encoding='utf-8') as file:
                 file.write(new_tex_content)
+
+    def escape_latex(self, text):
+        """Escape special characters for LaTeX."""
+        replacements = {
+            '&': r'\&',
+            '%': r'\%',
+            '$': r'\$',
+            '#': r'\#',
+            '_': r'\_',
+        }
+        for original, replacement in replacements.items():
+            text = text.replace(original, replacement)
+        return text
 
     def sanitize_filename(self, filename):
         return filename.replace("\\", "_").replace("/", "_")
@@ -184,7 +196,7 @@ class CoverLetterGenerator:
             f"Position: {position_title}\n"
             f"Contact: {contact_name}\n"
             f"Email: {email_address}\n"
-            f"If Danish is true then write it in Danish = {danish}, if false then write it in english"
+            "it is extremely important that you write the email in the same language as the job ad. If the job ad is in danish write in danish else write it in english"
             "Make sure to keep popular jargon in its native language (e.g., 'web scraping' should not be translated as it would sound silly).\n"
             "If you write the email in danish then make sure to use the correct word for cover letter 'ansøgning'"
         )

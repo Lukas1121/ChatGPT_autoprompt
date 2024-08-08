@@ -103,11 +103,12 @@ def is_job_relevant(job_description, client):
         "Simulated atrial fibrillation",
         "Analyzed Raman microscopy images",
         "Neutron moderation using Density Functional Theory"
+        "AI engineer or anything related to AI"
     ]
 
     prompt = (
         "You are an assistant who determines the relevance of job descriptions based on specific keywords and the provided CV. "
-        "The job description should be considered relevant if it contains IT or science aspects or anything related to the following key skills:\n\n"
+        "The job description should be considered relevant if  it contains IT or science aspects or anything related to the following key skills:\n\n"
         f"{', '.join(key_skills)}\n\n"
         "It does not need to contain all aspects, only one or more. "
         "Additionally, if the job title contains keywords like 'senior', 'professor', 'post-doc', or 'PhD', it should be considered not relevant. "
