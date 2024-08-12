@@ -30,38 +30,25 @@ ChatGPT Autoprompt is a Python-based automation tool designed to streamline the 
    ```
 
 2. Install the required Python packages:
-   \`\`\`bash
+   ```bash
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 3. Set up your configuration files:
    - Place your OpenAI API key and Gmail secret token in the appropriate configuration files.
 
 ## Usage
 
-1. **Job Search**:
-   - Run the \`jobsearch.py\` script to search for job ads on Jobindex.
-   - The script will clean up the HTML code and send it to ChatGPT to extract the job description.
+1. **Run the Main Script**:
+   - The full automation process is initiated by running the `main.py` script, which orchestrates all other scripts (`jobsearch.py`, `AutoPrompt.py`, `emailsender.py`).
+   - This script handles job search, data extraction, cover letter generation, and email preparation.
 
-   \`\`\`bash
-   python jobsearch.py
-   \`\`\`
+   ```bash
+   python main.py
+   ```
 
-2. **Prompt Handling**:
-   - Use the \`AutoPrompt.py\` script to handle the main prompts and interactions with ChatGPT.
-   - This script mines job details and generates the cover letter.
-
-   \`\`\`bash
-   python AutoPrompt.py
-   \`\`\`
-
-3. **Email Sending**:
-   - Use the \`emailsender.py\` script to send the application email and handle token validation.
-   - If no contact email is found, the email is sent to yourself with a link to the job ad for manual input.
-
-   \`\`\`bash
-   python emailsender.py
-   \`\`\`
+2. **Script Dependencies**:
+   - The individual scripts (`jobsearch.py`, `AutoPrompt.py`, `emailsender.py`) are not meant to be run standalone. They are invoked by `main.py` as part of the automation process.
 
 ## Configuration
 
