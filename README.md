@@ -24,10 +24,10 @@ ChatGPT Autoprompt is a Python-based automation tool designed to streamline the 
 ## Installation
 
 1. Clone the repository:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/Lukas1121/ChatGPT_autoprompt.git
    cd ChatGPT_autoprompt
-   \`\`\`
+   ```
 
 2. Install the required Python packages:
    \`\`\`bash
