@@ -4,6 +4,7 @@ import re
 from datetime import datetime
 from chatgpt_autoprompt.jobsearch import JobSearch, read_search_data
 from chatgpt_autoprompt.AutoPrompt import CoverLetterGenerator
+from chatgpt_autoprompt.email_sender import EmailSender
 import openai
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -24,6 +25,14 @@ config_paths = {
     'email': os.path.join(current_directory, 'configs', 'email.txt'),
     'output_folder': 'output'
 }
+
+def validate_gmail_token():
+    """Validates and refreshes the Gmail token if necessary."""
+    email_sender = EmailSender()
+    if not email_sender.creds or not email_sender.creds.valid:
+        print("Gmail token is invalid or expired. Refreshing token...")
+        email_sender.authenticate_gmail()  # Refresh the token
+        print("Token refreshed successfully.")
 
 def append_job_link_json(file_path, job_link, company, job_title, contact_person, email, danish, relevant=True):
     if relevant:
@@ -83,40 +92,41 @@ def read_existing_job_entries(file_path):
                 pass
     return existing_entries
 
-def is_job_relevant(job_description, client):
+def is_job_relevant(job_description, client): 
     with open(config_paths['cv'], 'r', encoding='utf-8') as file:
         cv_text = file.read()
 
     key_skills = [
-        "Adaptability and Embracing New Technologies",
-        "Python Programming Expertise",
+        "Adaptability",
+        "New Technologies",
+        "Python Programming",
         "Versatile Skillset",
-        "Proven Consultancy Track Record",
-        "Experience with data analysis, conversion, and treatment",
-        "Collaboration with ESRF",
-        "Development of tailored software solutions",
-        "Experience with industry-specific software solutions",
-        "X-ray data analysis",
-        "Python scripts for data conversion",
-        "Data treatment scripts",
-        "Data processing pipeline",
-        "Simulated atrial fibrillation",
-        "Analyzed Raman microscopy images",
-        "Neutron moderation using Density Functional Theory"
-        "AI engineer or anything related to AI"
+        "Consultancy",
+        "Data Analysis",
+        "Data Conversion",
+        "Data Analyst",
+        "Data Treatment",
+        "Software Development",
+        "Industry-specific Software",
+        "X-ray Data Analysis",
+        "Python Scripts",
+        "Data Processing",
+        "Raman Microscopy Analysis",
+        "Neutron Moderation",
+        "Density Functional Theory",
+        "AI Engineering"
     ]
 
     prompt = (
-        "You are an assistant who determines the relevance of job descriptions based on specific keywords and the provided CV. "
-        "The job description should be considered relevant if  it contains IT or science aspects or anything related to the following key skills:\n\n"
+        "You are an assistant who determines the relevance of job descriptions based on specific keywords. "
+        "Consider the job description relevant if it contains IT or science aspects or anything related to the following key skills:\n\n"
         f"{', '.join(key_skills)}\n\n"
         "It does not need to contain all aspects, only one or more. "
-        "Additionally, if the job title contains keywords like 'senior', 'professor', 'post-doc', or 'PhD', it should be considered not relevant. "
-        "Please analyze the following job description and the CV, then return 'false' if it is not relevant, and 'true' if it is relevant:\n\n"
+        "Additionally, if the job title contains keywords like 'senior', 'sr', 'lead', 'professor', 'post-doc', or 'PhD', it should be considered not relevant. "
+        "Please analyze the following job description  and then return 'false' if it is not relevant, and 'true' if it is relevant. "
+        "Provide a short explanation for your decision.\n\n"
         "Job Description:\n"
         f"{job_description}\n\n"
-        "CV:\n"
-        f"{cv_text}\n"
     )
 
     response = client.chat.completions.create(
@@ -125,14 +135,14 @@ def is_job_relevant(job_description, client):
             {"role": "system", "content": "You are an assistant who helps with text analysis."},
             {"role": "user", "content": prompt}
         ],
-        max_tokens=50,
+        max_tokens=150,  # Increase token limit to allow for a short explanation
         n=1,
         stop=None,
-        temperature=0.2  # Increase temperature to allow for more flexible interpretation
+        temperature=0.4  # Increase temperature slightly to allow for more nuanced interpretation
     )
  
     relevance_result = response.choices[0].message.content.strip().lower()
-    return relevance_result == 'true'
+    return "true" in relevance_result
 
 def process_job(search, existing_job_links, cover_letter_generator, processed_links_path, client):
     keyword = search['keyword']
@@ -198,6 +208,8 @@ def process_job(search, existing_job_links, cover_letter_generator, processed_li
 
 
 def main():
+    validate_gmail_token()
+
     search_data = read_search_data(keywords_path)
     cover_letter_generator = CoverLetterGenerator(client, config_paths)
     existing_job_links = read_existing_job_links(processed_links_path)

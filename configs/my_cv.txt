@@ -80,7 +80,7 @@
         
             \cvevent{Bachelor in Nanoscience}{University of Copenhagen}{2017 -- 2021}{Copenhagen, Denmark}
 
-        % ----- PROJECTS ----
+        % ----- Volunteer Experience ----
         \cvsection{Volunteer Experience}
             \cvevent{Fairbar}{Bartender}{2024 -- present}{Aarhus C, Denmark}
 

@@ -1,11 +1,47 @@
 {
     "searches": [
         {
-            "keyword": "Technical consultant",
+            "keyword": "Python Software Engineer",
             "location": "region-midtjylland"
         },
         {
-            "keyword": "X-ray data analyst",
+            "keyword": "Scientific Data Analyst",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "AI Engineer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Python Developer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data Scientist",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Machine Learning Engineer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data Analyst",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Software Developer",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "X-ray Data Scientist",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Technical Consultant",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "X-ray Data Analyst",
             "location": "region-midtjylland"
         },
         {
@@ -49,7 +85,23 @@
             "location": "region-midtjylland"
         },
         {
-            "keyword": "AI specialist",
+            "keyword": "Spectroscopy",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data Processing Specialist",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "AI Specialist",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Technical Consultant",
+            "location": "region-midtjylland"
+        },
+        {
+            "keyword": "Data Analysis Consultant",
             "location": "region-midtjylland"
         }
     ]

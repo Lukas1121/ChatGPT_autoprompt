@@ -1,6 +1,8 @@
 import os
 import json
 import re
+import tkinter as tk
+from tkinter import simpledialog
 from openai import OpenAI
 import subprocess
 from chatgpt_autoprompt.email_sender import EmailSender
@@ -227,7 +229,6 @@ class CoverLetterGenerator:
 
         return subject, body
 
-
     def process_job_ads(self, job_add_text, job_link):
         job_info = self.get_job_info_from_json(job_link)
         
@@ -241,11 +242,28 @@ class CoverLetterGenerator:
         sanitized_company_name = self.sanitize_filename(company_name)
         sanitized_position_title = self.sanitize_filename(position_title)
 
+        # Create a folder for the company if it doesn't exist
+        company_folder = os.path.join(self.output_folder, sanitized_company_name)
+        if not os.path.exists(company_folder):
+            os.makedirs(company_folder)
+
+        # Save the job ad text in the company folder
+        job_ad_file_path = os.path.join(company_folder, f"{sanitized_position_title}_job_ad.txt")
+        with open(job_ad_file_path, 'w', encoding='utf-8') as job_ad_file:
+            job_ad_file.write(job_add_text)
+
         prompt = self.construct_prompt(job_add_text, self.cv_text, self.cover_letter_template, self.considerations_text)
         generated_cover_letter = self.generate_cover_letter_with_gpt(prompt)
         
+        # Save and compile the cover letter
         self.save_cover_letter(generated_cover_letter, sanitized_company_name)
         self.compile_latex_to_pdf(sanitized_company_name, sanitized_position_title)
+
+        # Move the generated PDF to the company folder
+        cover_letter_pdf_path = os.path.join(self.output_folder, f"{sanitized_company_name}_{sanitized_position_title}_cover_letter.pdf")
+        company_pdf_path = os.path.join(company_folder, f"{sanitized_position_title}_cover_letter.pdf")
+        if os.path.exists(cover_letter_pdf_path):
+            os.rename(cover_letter_pdf_path, company_pdf_path)
 
         if email_address.lower() == 'lukieminator@gmail.com':
             subject = f"Manual Application Required for {position_title} at {company_name}"
@@ -254,12 +272,53 @@ class CoverLetterGenerator:
             subject, body = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address, danish=danish)
 
         email_sender = EmailSender()
-        cover_letter_path = os.path.join(self.output_folder, f"{sanitized_company_name}_{sanitized_position_title}_cover_letter.pdf")
         cv_path = os.path.join(self.output_folder, 'CV_Dansk_Lukas_Zeppelin.pdf') if danish else os.path.join(self.output_folder, 'CV_English_Lukas_Zeppelin.pdf')
         nir_recommendation_path = os.path.join(self.output_folder, 'NIR_Anbefaling.pdf')
         ti_recommendation_path = os.path.join(self.output_folder, 'TI_Anbefaling_LukasZeppelin.pdf')
 
-        files = [cover_letter_path, cv_path, nir_recommendation_path, ti_recommendation_path]
+        subject, body = edit_email(subject, body)
+        open_pdf_for_inspection(company_pdf_path)
+
+        # Attach all files to the email
+        files = [company_pdf_path, cv_path, nir_recommendation_path, ti_recommendation_path]
 
         email_sender.send_message('Lukas.zeppelin.ry@gmail.com', email_address, subject, body, files)
 
+
+def open_pdf_for_inspection(pdf_path):
+    try:
+        if os.name == 'posix':
+            subprocess.run(['open', pdf_path])  # macOS
+        elif os.name == 'nt':
+            os.startfile(pdf_path)  # Windows
+        elif os.name == 'posix2':
+            subprocess.run(['xdg-open', pdf_path])  # Linux
+    except Exception as e:
+        print(f"Could not open PDF file for inspection: {e}")
+
+def edit_email(subject, body):
+    root = tk.Tk()
+    root.title("Edit Email")
+    
+    tk.Label(root, text="Subject:").pack()
+    subject_var = tk.StringVar(value=subject)
+    subject_entry = tk.Entry(root, textvariable=subject_var, width=100)
+    subject_entry.pack()
+
+    tk.Label(root, text="Body:").pack()
+    body_text = tk.Text(root, height=20, width=100)
+    body_text.insert('1.0', body)
+    body_text.pack()
+
+    def on_submit():
+        nonlocal subject, body
+        subject = subject_var.get()
+        body = body_text.get("1.0", tk.END)
+        root.destroy()
+
+    submit_button = tk.Button(root, text="Submit", command=on_submit)
+    submit_button.pack()
+
+    root.mainloop()
+
+    return subject, body
