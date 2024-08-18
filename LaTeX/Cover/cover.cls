@@ -95,6 +95,7 @@ Last Updated on \today
 
 % Letter content command
 \newcommand{\lettercontent}[1]{\raggedright\fontspec[Path = OpenFonts/fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1 \\}\mbox{}\\ \normalfont}
+\newcommand{\bold}[1]{\fontspec[Path = OpenFonts/fonts/raleway/]{Raleway-Bold}#1\fontspec[Path = OpenFonts/fonts/raleway/]{Raleway-Medium}}
 
 \newcommand{\closing}[1]{\raggedright\fontspec[Path = OpenFonts/fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1 \\}\mbox{}\\\mbox{}\\ \normalfont}
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.13)  16 AUG 2024 15:25
+This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.6.13)  18 AUG 2024 13:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -623,9 +623,7 @@ age=dflt;"
 
 [1
 
-]
-
-[2] (c:\Users\Lukas\Documents\ChatGPT_autoprompt\LaTeX\Cover\cover.aux)
+] (c:\Users\Lukas\Documents\ChatGPT_autoprompt\LaTeX\Cover\cover.aux)
  ***********
 LaTeX2e <2024-06-01>
 L3 programming layer <2024-05-08>
@@ -634,13 +632,13 @@ Package rerunfilecheck Info: File `cover.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 15473 strings out of 409067
- 287896 string characters out of 5757611
- 1936545 words of memory out of 5000000
- 37957 multiletter control sequences out of 15000+600000
+ 15474 strings out of 409067
+ 287900 string characters out of 5757611
+ 1935545 words of memory out of 5000000
+ 37958 multiletter control sequences out of 15000+600000
  558733 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,11n,139p,773b,331s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,5n,139p,678b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on c:\Users\Lukas\Documents\ChatGPT_autoprompt\LaTeX\Cover\cover
-.pdf (2 pages).
+.pdf (1 page).

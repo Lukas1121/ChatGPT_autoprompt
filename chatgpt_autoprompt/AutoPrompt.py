@@ -269,7 +269,7 @@ class CoverLetterGenerator:
 
         open_pdf_for_inspection(company_pdf_path)
 
-        should_send_email = edit_email(subject, body, company_pdf_path)
+        should_send_email, subject, body, email_address = edit_email(subject, body, company_pdf_path, job_add_text, email_address)
 
         if should_send_email:
             email_sender = EmailSender()
@@ -294,26 +294,53 @@ def open_pdf_for_inspection(pdf_path):
     except Exception as e:
         print(f"Could not open PDF file for inspection: {e}")
 
-def edit_email(subject, body, pdf_path):
+import tkinter as tk
+from tkinter import ttk
+
+def edit_email(subject, body, pdf_path, job_ad_text, initial_email_address):
     root = tk.Tk()
     root.title("Edit Email")
-    
-    tk.Label(root, text="Subject:").pack()
+
+    # Create a Notebook (tabs)
+    notebook = ttk.Notebook(root)
+    notebook.pack(fill='both', expand=True)
+
+    # Tab 1: Job Ad
+    job_ad_frame = ttk.Frame(notebook)
+    notebook.add(job_ad_frame, text="Job Ad")
+
+    tk.Label(job_ad_frame, text="Job Ad:").pack()
+    job_ad_text_widget = tk.Text(job_ad_frame, height=30, width=100)
+    job_ad_text_widget.insert('1.0', job_ad_text)
+    job_ad_text_widget.config(state=tk.DISABLED)  # Make the job ad text read-only
+    job_ad_text_widget.pack(fill='both', expand=True)
+
+    # Tab 2: Edit Email
+    email_frame = ttk.Frame(notebook)
+    notebook.add(email_frame, text="Edit Email")
+
+    tk.Label(email_frame, text="Recipient Email:").pack()
+    email_var = tk.StringVar(value=initial_email_address)
+    email_entry = tk.Entry(email_frame, textvariable=email_var, width=100)
+    email_entry.pack()
+
+    tk.Label(email_frame, text="Subject:").pack()
     subject_var = tk.StringVar(value=subject)
-    subject_entry = tk.Entry(root, textvariable=subject_var, width=100)
+    subject_entry = tk.Entry(email_frame, textvariable=subject_var, width=100)
     subject_entry.pack()
 
-    tk.Label(root, text="Body:").pack()
-    body_text = tk.Text(root, height=20, width=100)
+    tk.Label(email_frame, text="Body:").pack()
+    body_text = tk.Text(email_frame, height=20, width=100)
     body_text.insert('1.0', body)
-    body_text.pack()
+    body_text.pack(fill='both', expand=True)
 
     should_send_email = tk.BooleanVar(value=False)
 
     def on_submit():
-        nonlocal subject, body, should_send_email
+        nonlocal subject, body, initial_email_address, should_send_email
         subject = subject_var.get()
         body = body_text.get("1.0", tk.END)
+        initial_email_address = email_var.get()
         should_send_email.set(True)
         root.destroy()
 
@@ -321,12 +348,13 @@ def edit_email(subject, body, pdf_path):
         should_send_email.set(False)
         root.destroy()
 
-    submit_button = tk.Button(root, text="Send Email", command=on_submit)
+    submit_button = tk.Button(email_frame, text="Send Email", command=on_submit)
     submit_button.pack(side=tk.LEFT, padx=5, pady=5)
 
-    cancel_button = tk.Button(root, text="Do Not Send", command=on_cancel)
+    cancel_button = tk.Button(email_frame, text="Do Not Send", command=on_cancel)
     cancel_button.pack(side=tk.RIGHT, padx=5, pady=5)
 
     root.mainloop()
 
-    return should_send_email.get()
+    return should_send_email.get(), subject, body, initial_email_address
+
