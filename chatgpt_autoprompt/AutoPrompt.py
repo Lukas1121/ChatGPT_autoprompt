@@ -242,12 +242,10 @@ class CoverLetterGenerator:
         sanitized_company_name = self.sanitize_filename(company_name)
         sanitized_position_title = self.sanitize_filename(position_title)
 
-        # Create a folder for the company if it doesn't exist
         company_folder = os.path.join(self.output_folder, sanitized_company_name)
         if not os.path.exists(company_folder):
             os.makedirs(company_folder)
 
-        # Save the job ad text in the company folder
         job_ad_file_path = os.path.join(company_folder, f"{sanitized_position_title}_job_ad.txt")
         with open(job_ad_file_path, 'w', encoding='utf-8') as job_ad_file:
             job_ad_file.write(job_add_text)
@@ -255,11 +253,9 @@ class CoverLetterGenerator:
         prompt = self.construct_prompt(job_add_text, self.cv_text, self.cover_letter_template, self.considerations_text)
         generated_cover_letter = self.generate_cover_letter_with_gpt(prompt)
         
-        # Save and compile the cover letter
         self.save_cover_letter(generated_cover_letter, sanitized_company_name)
         self.compile_latex_to_pdf(sanitized_company_name, sanitized_position_title)
 
-        # Move the generated PDF to the company folder
         cover_letter_pdf_path = os.path.join(self.output_folder, f"{sanitized_company_name}_{sanitized_position_title}_cover_letter.pdf")
         company_pdf_path = os.path.join(company_folder, f"{sanitized_position_title}_cover_letter.pdf")
         if os.path.exists(cover_letter_pdf_path):
@@ -271,19 +267,21 @@ class CoverLetterGenerator:
         else:
             subject, body = self.generate_email_with_gpt(job_add_text, company_name, position_title, contact_name, email_address, danish=danish)
 
-        email_sender = EmailSender()
-        cv_path = os.path.join(self.output_folder, 'CV_Dansk_Lukas_Zeppelin.pdf') if danish else os.path.join(self.output_folder, 'CV_English_Lukas_Zeppelin.pdf')
-        nir_recommendation_path = os.path.join(self.output_folder, 'NIR_Anbefaling.pdf')
-        ti_recommendation_path = os.path.join(self.output_folder, 'TI_Anbefaling_LukasZeppelin.pdf')
-
-        subject, body = edit_email(subject, body)
         open_pdf_for_inspection(company_pdf_path)
 
-        # Attach all files to the email
-        files = [company_pdf_path, cv_path, nir_recommendation_path, ti_recommendation_path]
+        should_send_email = edit_email(subject, body, company_pdf_path)
 
-        email_sender.send_message('Lukas.zeppelin.ry@gmail.com', email_address, subject, body, files)
+        if should_send_email:
+            email_sender = EmailSender()
+            cv_path = os.path.join(self.output_folder, 'CV_Dansk_Lukas_Zeppelin.pdf') if danish else os.path.join(self.output_folder, 'CV_English_Lukas_Zeppelin.pdf')
+            nir_recommendation_path = os.path.join(self.output_folder, 'NIR_Anbefaling.pdf')
+            ti_recommendation_path = os.path.join(self.output_folder, 'TI_Anbefaling_LukasZeppelin.pdf')
 
+            files = [company_pdf_path, cv_path, nir_recommendation_path, ti_recommendation_path]
+
+            email_sender.send_message('Lukas.zeppelin.ry@gmail.com', email_address, subject, body, files)
+        else:
+            print("Application not sent.")
 
 def open_pdf_for_inspection(pdf_path):
     try:
@@ -296,7 +294,7 @@ def open_pdf_for_inspection(pdf_path):
     except Exception as e:
         print(f"Could not open PDF file for inspection: {e}")
 
-def edit_email(subject, body):
+def edit_email(subject, body, pdf_path):
     root = tk.Tk()
     root.title("Edit Email")
     
@@ -310,15 +308,25 @@ def edit_email(subject, body):
     body_text.insert('1.0', body)
     body_text.pack()
 
+    should_send_email = tk.BooleanVar(value=False)
+
     def on_submit():
-        nonlocal subject, body
+        nonlocal subject, body, should_send_email
         subject = subject_var.get()
         body = body_text.get("1.0", tk.END)
+        should_send_email.set(True)
         root.destroy()
 
-    submit_button = tk.Button(root, text="Submit", command=on_submit)
-    submit_button.pack()
+    def on_cancel():
+        should_send_email.set(False)
+        root.destroy()
+
+    submit_button = tk.Button(root, text="Send Email", command=on_submit)
+    submit_button.pack(side=tk.LEFT, padx=5, pady=5)
+
+    cancel_button = tk.Button(root, text="Do Not Send", command=on_cancel)
+    cancel_button.pack(side=tk.RIGHT, padx=5, pady=5)
 
     root.mainloop()
 
-    return subject, body
+    return should_send_email.get()
